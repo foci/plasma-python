@@ -256,8 +256,15 @@ class MPIModel():
     weights_after_update = self.model.get_weights()
     self.model.set_weights(weights_before_update)
 
+    #unscale before subtracting
+    weights_before_update = multiply_params(weights_before_update,1.0/self.DUMMY_LR) 
+    weights_after_update = multiply_params(weights_after_update,1.0/self.DUMMY_LR) 
+
     deltas = subtract_params(weights_after_update,weights_before_update)
-    deltas = multiply_params(deltas,1.0/self.DUMMY_LR)
+    
+    #unscale loss
+    if conf['model']['loss_scale_factor'] != 1.0:
+        deltas = multiply_params(deltas,1.0/conf['model']['loss_scale_factor'])
 
     return deltas,loss
 
