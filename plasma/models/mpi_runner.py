@@ -20,6 +20,7 @@ import sys
 import time
 import datetime
 import numpy as np
+import random
 
 from functools import partial
 import socket
@@ -129,9 +130,6 @@ class MPIAdam(MPIOptimizer):
 
   def get_deltas(self,raw_deltas):
 
-    if K.floatx() == "float16":
-        raw_deltas[:] = map(lambda w: w.astype(np.float32),raw_deltas)
-
     if self.iterations == 0:
       self.m_list = [np.zeros_like(g) for g in raw_deltas]
       self.v_list = [np.zeros_like(g) for g in raw_deltas]
@@ -148,9 +146,6 @@ class MPIAdam(MPIOptimizer):
       self.v_list[i] = v_t
 
     self.iterations += 1
-
-    if K.floatx() == "float16":
-        deltas[:] = map(lambda w: w.astype(np.float16),deltas)
 
     return deltas
 
@@ -170,7 +165,9 @@ class Averager(object):
 
 class MPIModel():
   def __init__(self,model,optimizer,comm,batch_iterator,batch_size,num_replicas=None,warmup_steps=1000,lr=0.01,num_batches_minimum=100):
-    # random.seed(task_index)
+    random.seed(task_index)
+    np.random.seed(task_index)
+    self.start_time = time.time()
     self.epoch = 0
     self.num_so_far = 0
     self.num_so_far_accum = 0
@@ -255,10 +252,17 @@ class MPIModel():
 
     weights_after_update = self.model.get_weights()
     self.model.set_weights(weights_before_update)
+ 
+    #unscale before subtracting
+    weights_before_update = multiply_params(weights_before_update,1.0/self.DUMMY_LR) 
+    weights_after_update = multiply_params(weights_after_update,1.0/self.DUMMY_LR) 
 
     deltas = subtract_params(weights_after_update,weights_before_update)
-    deltas = multiply_params(deltas,1.0/self.DUMMY_LR)
-
+    
+    #unscale loss
+    if conf['model']['loss_scale_factor'] != 1.0:
+        deltas = multiply_params(deltas,1.0/conf['model']['loss_scale_factor'])
+ 
     return deltas,loss
 
 
@@ -466,7 +470,7 @@ class MPIModel():
         loss_averager.add_val(curr_loss)
         ave_loss = loss_averager.get_val()
         eta = self.estimate_remaining_time(t0 - t_start,self.num_so_far-self.epoch*num_total,num_total)
-        write_str = '\r[{}] step: {} [ETA: {:.2f}s] [{:.2f}/{}], loss: {:.5f} [{:.5f}] | '.format(self.task_index,step,eta,1.0*self.num_so_far,num_total,ave_loss,curr_loss)
+        write_str = '\r[{}] step: {} [ETA: {:.2f}s] [{:.2f}/{}], loss: {:.5f} [{:.5f}] | walltime: {:.4f} | '.format(self.task_index,step,eta,1.0*self.num_so_far,num_total,ave_loss,curr_loss,time.time()-self.start_time)
         print_unique(write_str + write_str_0)
         step += 1
       else:
@@ -640,6 +644,7 @@ def mpi_make_predictions_and_evaluate(conf,shot_list,loader,custom_path=None):
 
 
 def mpi_train(conf,shot_list_train,shot_list_validate,loader, callbacks_list=None):   
+
     loader.set_inference_mode(False)
     conf['num_workers'] = comm.Get_size()
 

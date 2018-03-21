@@ -59,6 +59,7 @@ class Signal(object):
         file_path = self.get_file_path(prepath,shot.machine,shot.number)
         if not self.is_saved(prepath,shot):
             print('Signal {}, shot {} was never downloaded'.format(self.description,shot.number))
+            print('prepath is ='+file_path)
             return None,False
 
         if os.path.getsize(file_path) == 0:
@@ -227,7 +228,7 @@ class ProfileSignal(Signal):
         for i in range(timesteps):
             _,order = np.unique(mapping[i,:],return_index=True) #make sure the mapping is ordered and unique
             if sig[i,order].shape[0] > 2:
-                f = UnivariateSpline(mapping[i,order],sig[i,order],s=0,k=1,ext=0)
+                f = UnivariateSpline(mapping[i,order],sig[i,order],s=0,k=1,ext=3) #ext = 0 is extrapolation, ext = 3 is boundary value.
                 sig_interp[i,:] = f(remapping)
             else:
                 print('Signal {}, shot {} has not enough points for linear interpolation. dfitpack.error: (m>k) failed for hidden m: fpcurf0:m=1'.format(self.description,shot.number))

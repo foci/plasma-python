@@ -2,24 +2,23 @@
 
 #will do stuff in fs_path / [username] / signal_data | shot_lists | processed shots, etc.
 
-fs_path: '/work/00004/michoski/maverick'
-target: 'hinge' #'maxhinge' #'maxhinge' #'binary' #'hinge' 
-num_gpus: 1 #40
+fs_path: '/tigress'
+target: 'maxhinge' #'maxhinge' #'maxhinge' #'binary' #'hinge' 
+num_gpus: 4
 
 paths:
-    signal_prepath: '/../../../05447/merlo/maverick/plasma_python/signal_data_new/' #/signal_data/jet/
-    shot_list_dir: '/shot_lists/d3d/'
+    signal_prepath: '/signal_data/' #/signal_data/jet/
+    shot_list_dir: '/shot_lists/'
     tensorboard_save_path: '/Graph/'
-    data: 'd3d_data_all' #'d3d_to_jet_data' #'d3d_to_jet_data' # 'jet_to_d3d_data' #jet_data
-    specific_signals: ['q95'] #['q95','li','ip','betan','energy','lm','pradcore','pradedge','pradtot','pin','torquein','tmamp1','tmamp2','tmfreq1','tmfreq2','pechin','energydt','ipdirect','etemp_profile','edens_profile'] #if left empty will use all valid signals defined on a machine. Only use if need a custom set
+    data: jet_data #'d3d_to_jet_data' #'d3d_to_jet_data' # 'jet_to_d3d_data' #jet_data
+    specific_signals: [] #['q95','li','ip','betan','energy','lm','pradcore','pradedge','pradtot','pin','torquein','tmamp1','tmamp2','tmfreq1','tmfreq2','pechin','energydt','ipdirect','etemp_profile','edens_profile'] #if left empty will use all valid signals defined on a machine. Only use if need a custom set
     executable: "mpi_learn.py"
     shallow_executable: "learn.py"
 
 data:
     bleed_in: 0 #how many shots from the test sit to use in training?
-    bleed_in_repeat_fac: 1 #how many times to repeat shots in training and validation?
     bleed_in_remove_from_test: True
-    bleed_in_equalize_sets: False
+    bleed_in_equalize_sets: True
     signal_to_augment: None #'plasma current' #or None
     augmentation_mode: 'none'
     augment_during_training: False
@@ -32,7 +31,7 @@ data:
     plotting: False
     #train/validate split
     #how many shots to use
-    use_shots: 20 #1000 #200000 #1000 #200000
+    use_shots: 200000 #1000 #200000
     positive_example_penalty: 1.0 #by what factor to upweight positive examples?
     #normalization timescale
     dt: 0.001
@@ -54,13 +53,12 @@ data:
     floatx: 'float32'
 
 model:
-    loss_scale_factor: 1.0
     use_bidirectional: false
     use_batch_norm: false
     shallow: False
     shallow_model: 
         num_samples: 1000000 #1000000 #the number of samples to use for training
-        type: "xgboost" #"xgboost" #"xgboost" #"random_forest" "xgboost"
+        type: "mlp" #"xgboost" #"xgboost" #"random_forest" "xgboost"
         n_estimators: 100 #for random forest
         max_depth: 3 #for random forest and xgboost (def = 3)
         C: 1.0 #for svm
@@ -94,8 +92,8 @@ model:
     #have not found a difference yet
     optimizer: 'adam'
     clipnorm: 10.0
-    regularization: 0.001
-    dense_regularization: 0.001
+    regularization: 0.0
+    dense_regularization: 0.01
     #1e-4 is too high, 5e-7 is too low. 5e-5 seems best at 256 batch size, full dataset and ~10 epochs, and lr decay of 0.90. 1e-4 also works well if we decay a lot (i.e ~0.7 or more)
     lr: 0.00002 #0.00001 #0.0005 #for adam plots 0.0000001 #0.00005 #0.00005 #0.00005
     lr_decay: 0.97 #0.98 #0.9
@@ -111,17 +109,17 @@ training:
     shuffle_training: True
     train_frac: 0.75
     validation_frac: 0.33
-    batch_size: 16 #128 #256
+    batch_size: 128 #256
     #THIS WAS THE CULPRIT FOR NO TRAINING! Lower than 1000 performs very poorly
     max_patch_length: 100000
     #How many shots are we loading at once?
-    num_shots_at_once: 100
-    num_epochs: 10
+    num_shots_at_once: 200
+    num_epochs: 1000
     use_mock_data: False
     data_parallel: False
     hyperparam_tuning: False
     batch_generator_warmup_steps: 0
-    num_batches_minimum: 20 #minimum number of batches per epoch
+    num_batches_minimum: 200 #minimum number of batches per epoch
     ranking_difficulty_fac: 1.0 #how much to upweight incorrectly classified shots during training
 callbacks:
     list: ['earlystop']
