@@ -237,6 +237,7 @@ class ShotList(object):
     def random_sublist(self,num):
         num = min(num,len(self))
         shots_picked = np.random.choice(self.shots,size=num,replace=False)
+        print("shots_picked =", num)
         return ShotList(shots_picked)
 
     def sublists(self,num,do_shuffle=True,equal_size=False):

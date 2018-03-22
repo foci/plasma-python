@@ -7,10 +7,10 @@ target: 'hinge' #'maxhinge' #'maxhinge' #'binary' #'hinge'
 num_gpus: 1 #40
 
 paths:
-    signal_prepath: '/../../../05447/merlo/maverick/plasma_python/signal_data_new/' #/signal_data/jet/
+    signal_prepath: '/../../../05447/merlo/maverick/plasma_python/signal_data_new/d3d/d3d/' #/signal_data/jet/
     shot_list_dir: '/shot_lists/d3d/'
     tensorboard_save_path: '/Graph/'
-    data: 'd3d_data_all' #'d3d_to_jet_data' #'d3d_to_jet_data' # 'jet_to_d3d_data' #jet_data
+    data: 'd3d_data_cem' #'d3d_to_jet_data' #'d3d_to_jet_data' # 'jet_to_d3d_data' #jet_data
     specific_signals: ['q95'] #['q95','li','ip','betan','energy','lm','pradcore','pradedge','pradtot','pin','torquein','tmamp1','tmamp2','tmfreq1','tmfreq2','pechin','energydt','ipdirect','etemp_profile','edens_profile'] #if left empty will use all valid signals defined on a machine. Only use if need a custom set
     executable: "mpi_learn.py"
     shallow_executable: "learn.py"
@@ -19,7 +19,7 @@ data:
     bleed_in: 0 #how many shots from the test sit to use in training?
     bleed_in_repeat_fac: 1 #how many times to repeat shots in training and validation?
     bleed_in_remove_from_test: True
-    bleed_in_equalize_sets: False
+    bleed_in_equalize_sets: True
     signal_to_augment: None #'plasma current' #or None
     augmentation_mode: 'none'
     augment_during_training: False
@@ -32,7 +32,7 @@ data:
     plotting: False
     #train/validate split
     #how many shots to use
-    use_shots: 20 #1000 #200000 #1000 #200000
+    use_shots: 200000 #1000 #200000
     positive_example_penalty: 1.0 #by what factor to upweight positive examples?
     #normalization timescale
     dt: 0.001
@@ -111,17 +111,17 @@ training:
     shuffle_training: True
     train_frac: 0.75
     validation_frac: 0.33
-    batch_size: 16 #128 #256
+    batch_size: 128 #256
     #THIS WAS THE CULPRIT FOR NO TRAINING! Lower than 1000 performs very poorly
     max_patch_length: 100000
     #How many shots are we loading at once?
-    num_shots_at_once: 100
+    num_shots_at_once: 200
     num_epochs: 10
     use_mock_data: False
     data_parallel: False
     hyperparam_tuning: False
     batch_generator_warmup_steps: 0
-    num_batches_minimum: 20 #minimum number of batches per epoch
+    num_batches_minimum: 200 #minimum number of batches per epoch
     ranking_difficulty_fac: 1.0 #how much to upweight incorrectly classified shots during training
 callbacks:
     list: ['earlystop']

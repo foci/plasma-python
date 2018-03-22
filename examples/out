@@ -1,0 +1,253 @@
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcublas.so.8.0 locally
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcudnn.so.5 locally
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcufft.so.8.0 locally
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcuda.so.1 locally
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcurand.so.8.0 locally
+all signals (determines which signals are downloaded and preprocessed):
+dict_values([Normalized Beta, Locked mode amplitude, stored energy time derivative, plasma current, plasma current target, Radiated Power, Plasma density, q95 safety factor, Input Beam Torque, plasma current direction, Electron temperature profile, Radiated Power Edge, plasma current error, Radiated Power Core, internal inductance, Input Power (beam for d3d), stored energy, Electron density profile])
+Selected signals (determines which signals training is run on):
+[q95 safety factor]
+{'callbacks': {'list': ['earlystop'],
+               'metrics': ['val_loss', 'val_roc', 'train_loss'],
+               'mode': 'max',
+               'monitor': 'val_roc',
+               'patience': 5,
+               'write_grads': False},
+ 'data': {'T_max': 1000.0,
+          'T_min_warn': 30,
+          'T_warning': 1.024,
+          'augment_during_training': False,
+          'augmentation_mode': 'none',
+          'bleed_in': 0,
+          'bleed_in_equalize_sets': False,
+          'bleed_in_remove_from_test': True,
+          'bleed_in_repeat_fac': 1,
+          'current_end_thresh': 10000,
+          'current_index': 0,
+          'current_thresh': 750000,
+          'cut_shot_ends': True,
+          'dt': 0.001,
+          'equalize_classes': False,
+          'floatx': 'float32',
+          'norm_stat_range': 100.0,
+          'normalizer': 'var',
+          'plotting': False,
+          'positive_example_penalty': 1.0,
+          'recompute': False,
+          'recompute_normalization': False,
+          'signal_to_augment': 'None',
+          'target': <class 'plasma.models.targets.HingeTarget'>,
+          'use_shots': 200,
+          'window_decay': 2,
+          'window_size': 10},
+ 'env': {'name': 'frnn', 'type': 'anaconda'},
+ 'fs_path': '/work/00004/michoski/maverick',
+ 'model': {'backend': 'tensorflow',
+           'clipnorm': 10.0,
+           'dense_regularization': 0.001,
+           'dense_size': 128,
+           'dropout_prob': 0.1,
+           'extra_dense_input': False,
+           'ignore_timesteps': 100,
+           'length': 128,
+           'loss_scale_factor': 1.0,
+           'lr': 2e-05,
+           'lr_decay': 0.97,
+           'num_conv_filters': 128,
+           'num_conv_layers': 3,
+           'optimizer': 'adam',
+           'pool_size': 2,
+           'pred_batch_size': 128,
+           'pred_length': 200,
+           'regularization': 0.001,
+           'return_sequences': True,
+           'rnn_layers': 2,
+           'rnn_size': 200,
+           'rnn_type': 'LSTM',
+           'shallow': False,
+           'shallow_model': {'C': 1.0,
+                             'final_hidden_layer_size': 10,
+                             'kernel': 'rbf',
+                             'learning_rate': 0.1,
+                             'learning_rate_mlp': 0.0001,
+                             'max_depth': 3,
+                             'mlp_regularization': 0.0001,
+                             'n_estimators': 100,
+                             'num_hidden_layers': 3,
+                             'num_samples': 1000000,
+                             'scale_pos_weight': 10.0,
+                             'skip_train': False,
+                             'type': 'xgboost'},
+           'size_conv_filters': 3,
+           'skip': 1,
+           'stateful': True,
+           'use_batch_norm': False,
+           'use_bidirectional': False,
+           'warmup_steps': 0},
+ 'num_gpus': 40,
+ 'paths': {'all_machines': [d3d],
+           'all_signals': [Normalized Beta,
+                           Locked mode amplitude,
+                           stored energy time derivative,
+                           plasma current,
+                           plasma current target,
+                           Radiated Power,
+                           Plasma density,
+                           q95 safety factor,
+                           Input Beam Torque,
+                           plasma current direction,
+                           Radiated Power Edge,
+                           plasma current error,
+                           Radiated Power Core,
+                           internal inductance,
+                           Input Power (beam for d3d),
+                           stored energy,
+                           Electron temperature profile,
+                           Electron density profile],
+           'all_signals_dict': {'betan': Normalized Beta,
+                                'dens': Plasma density,
+                                'edens_profile': Electron density profile,
+                                'energy': stored energy,
+                                'energydt': stored energy time derivative,
+                                'etemp_profile': Electron temperature profile,
+                                'ip': plasma current,
+                                'ipdirect': plasma current direction,
+                                'iperr': plasma current error,
+                                'iptarget': plasma current target,
+                                'li': internal inductance,
+                                'lm': Locked mode amplitude,
+                                'pin': Input Power (beam for d3d),
+                                'pradcore': Radiated Power Core,
+                                'pradedge': Radiated Power Edge,
+                                'pradtot': Radiated Power,
+                                'q95': q95 safety factor,
+                                'torquein': Input Beam Torque},
+           'base_path': '/work/00004/michoski/maverick',
+           'csvlog_save_path': '/work/00004/michoski/maverick/csv_logs/',
+           'data': 'd3d_data_all',
+           'executable': 'mpi_learn.py',
+           'global_normalizer_path': '/work/00004/michoski/maverick/normalization/normalization_signal_group_3236450206765786377241194018831785328.npz',
+           'model_save_path': '/work/00004/michoski/maverick/model_checkpoints/',
+           'normalizer_path': '/work/00004/michoski/maverick/normalization/normalization_signal_group_3236450206765786377241194018831785328.npz',
+           'output_path': '/work/00004/michoski/maverick',
+           'processed_prepath': '/work/00004/michoski/maverick/processed_shots/signal_group_3236450206765786377241194018831785328/',
+           'results_prepath': '/work/00004/michoski/maverick/results/',
+           'saved_shotlist_path': '/work/00004/michoski/maverick/processed_shotlists/d3d_data_all/shot_lists_signal_group_3236450206765786377241194018831785328.npz',
+           'shallow_executable': 'learn.py',
+           'shot_files': [machine: d3d
+d3d data since shot 125500],
+           'shot_files_all': [machine: d3d
+d3d data since shot 125500],
+           'shot_files_test': [],
+           'shot_list_dir': '/work/00004/michoski/maverick/shot_lists/d3d/',
+           'signal_prepath': '/work/00004/michoski/maverick/../../../05447/merlo/maverick/plasma_python/signal_data_new/',
+           'specific_signals': ['q95'],
+           'tensorboard_save_path': '/work/00004/michoski/maverick/Graph/',
+           'use_signals': [q95 safety factor],
+           'use_signals_dict': {'betan': Normalized Beta,
+                                'dens': Plasma density,
+                                'edens_profile': Electron density profile,
+                                'energy': stored energy,
+                                'etemp_profile': Electron temperature profile,
+                                'ip': plasma current,
+                                'ipdirect': plasma current direction,
+                                'iperr': plasma current error,
+                                'iptarget': plasma current target,
+                                'li': internal inductance,
+                                'lm': Locked mode amplitude,
+                                'pin': Input Power (beam for d3d),
+                                'pradcore': Radiated Power Core,
+                                'pradedge': Radiated Power Edge,
+                                'q95': q95 safety factor,
+                                'torquein': Input Beam Torque}},
+ 'target': 'hinge',
+ 'training': {'as_array_of_shots': True,
+              'batch_generator_warmup_steps': 0,
+              'batch_size': 64,
+              'data_parallel': False,
+              'hyperparam_tuning': False,
+              'max_patch_length': 100000,
+              'num_batches_minimum': 200,
+              'num_epochs': 10,
+              'num_shots_at_once': 100,
+              'ranking_difficulty_fac': 1.0,
+              'shuffle_training': True,
+              'train_frac': 0.75,
+              'use_mock_data': False,
+              'validation_frac': 0.33},
+ 'user_name': 'michoski'}
+shots already processed.
+validate: 98 shots, 23 disruptive
+training: 200 shots, 46 disruptive
+testing: 99 shots, 15 disruptive
+...done
+normalizationMachine d3d:
+loaded normalization data from {d3d: 397} shots ( {d3d: 84} disruptive )
+Machine: d3d:
+Var Normalizer.
+stds: [  1.40912863e+00   0.00000000e+00   4.92695381e-04   2.76347908e+05
+   2.17596701e-01   1.24422188e+00   1.12670149e+00   1.82833458e+03
+   4.64327935e-04   6.80558316e-01   3.05198138e-02   3.81909883e-01
+   1.00950409e+00   3.93063968e-01   9.28953115e-01   1.51406147e+00]
+
+...done
+Training on 200 shots, testing on 99 shots
+Using TensorFlow backend.
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:885] Found device 0 with properties: 
+name: Tesla K40m
+major: 3 minor: 5 memoryClockRate (GHz) 0.745
+pciBusID 0000:08:00.0
+Total memory: 11.17GiB
+Free memory: 11.10GiB
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:906] DMA: 0 
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:916] 0:   Y 
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:975] Creating TensorFlow device (/gpu:0) -> (device: 0, name: Tesla K40m, pci bus id: 0000:08:00.0)
+I tensorflow/compiler/xla/service/platform_util.cc:58] platform CUDA present with 1 visible devices
+I tensorflow/compiler/xla/service/platform_util.cc:58] platform Host present with 20 visible devices
+I tensorflow/compiler/xla/service/service.cc:180] XLA service executing computations on platform Host. Devices:
+I tensorflow/compiler/xla/service/service.cc:187]   StreamExecutor device (0): <undefined>, <undefined>
+I tensorflow/compiler/xla/service/platform_util.cc:58] platform CUDA present with 1 visible devices
+I tensorflow/compiler/xla/service/platform_util.cc:58] platform Host present with 20 visible devices
+I tensorflow/compiler/xla/service/service.cc:180] XLA service executing computations on platform CUDA. Devices:
+I tensorflow/compiler/xla/service/service.cc:187]   StreamExecutor device (0): Tesla K40m, Compute Capability 3.5
+validate: 98 shots, 23 disruptive
+training: 200 shots, 46 disruptive
+Build model...Compile model...done
+no previous checkpoint found
+10 epochs left to go
+
+Epoch 1/10
+Process Process-1:
+Traceback (most recent call last):
+  File "/opt/apps/gcc4_9/python3/3.5.2/lib/python3.5/multiprocessing/process.py", line 249, in _bootstrap
+    self.run()
+  File "/opt/apps/gcc4_9/python3/3.5.2/lib/python3.5/multiprocessing/process.py", line 93, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/00004/michoski/.local/lib/python3.5/site-packages/plasma-1.0.0-py3.5.egg/plasma/models/runner.py", line 88, in train
+    K.set_value(train_model.optimizer.lr, lr*lr_decay**(e))
+NameError: name 'lr' is not defined
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/apps/gcc4_9/python3/3.5.2/lib/python3.5/multiprocessing/process.py", line 252, in _bootstrap
+    util._exit_function()
+  File "/opt/apps/gcc4_9/python3/3.5.2/lib/python3.5/multiprocessing/util.py", line 311, in _exit_function
+    p.join()
+  File "/opt/apps/gcc4_9/python3/3.5.2/lib/python3.5/multiprocessing/process.py", line 121, in join
+    res = self._popen.wait(timeout)
+  File "/opt/apps/gcc4_9/python3/3.5.2/lib/python3.5/multiprocessing/popen_fork.py", line 51, in wait
+    return self.poll(os.WNOHANG if timeout == 0.0 else 0)
+  File "/opt/apps/gcc4_9/python3/3.5.2/lib/python3.5/multiprocessing/popen_fork.py", line 29, in poll
+    pid, sts = os.waitpid(self.pid, flag)
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "learn.py", line 96, in <module>
+    p.join()
+  File "/opt/apps/gcc4_9/python3/3.5.2/lib/python3.5/multiprocessing/process.py", line 121, in join
+    res = self._popen.wait(timeout)
+  File "/opt/apps/gcc4_9/python3/3.5.2/lib/python3.5/multiprocessing/popen_fork.py", line 51, in wait
+    return self.poll(os.WNOHANG if timeout == 0.0 else 0)
+  File "/opt/apps/gcc4_9/python3/3.5.2/lib/python3.5/multiprocessing/popen_fork.py", line 29, in poll
+    pid, sts = os.waitpid(self.pid, flag)
+KeyboardInterrupt
