@@ -172,6 +172,11 @@ ip = Signal("plasma current",["jpf/da/c2-ipla","d3d/ipspr15V"],[jet,d3d],is_ip=T
 iptarget = Signal("plasma current target",["d3d/ipsiptargt"],[d3d])
 iperr = Signal("plasma current error",["d3d/ipeecoil"],[d3d])
 
+rl01 = Signal("ragowski current1",["jpf/da/c2-ipla","d3d/rl01"],[jet,d3d],is_ip=False)
+rl02 = Signal("ragowski current2",["jpf/da/c2-ipla","d3d/rl02"],[jet,d3d],is_ip=False)
+rl03 = Signal("ragowski current3",["jpf/da/c2-ipla","d3d/rl03"],[jet,d3d],is_ip=False)
+
+
 li = Signal("internal inductance",["jpf/gs/bl-li<s","d3d/efsli"],[jet,d3d])
 lm = Signal("Locked mode amplitude",['jpf/da/c2-loca','d3d/dusbradial'],[jet,d3d])
 dens = Signal("Plasma density",['jpf/df/g1r-lid:003','d3d/dssdenest'],[jet,d3d],is_strictly_positive=True)
@@ -212,7 +217,7 @@ ipdirect = Signal("plasma current direction",["d3d/iptdirect"],[d3d])
 #}
 
 #Restricted subset to those signals that are present for most shots. The idea is to remove signals that cause many shots to be dropped from the dataset.
-all_signals = {'q95':q95,'li':li,'ip':ip,'betan':betan,'energy':energy,'lm':lm,'dens':dens,'pradcore':pradcore,
+all_signals = {'rl01':rl01,'rl02':rl02,'rl03':rl03,'q95':q95,'li':li,'ip':ip,'betan':betan,'energy':energy,'lm':lm,'dens':dens,'pradcore':pradcore,
 'pradedge':pradedge,'pradtot':pradtot,'pin':pin,
 'torquein':torquein,
 'energydt':energydt,'ipdirect':ipdirect,'iptarget':iptarget,'iperr':iperr,
