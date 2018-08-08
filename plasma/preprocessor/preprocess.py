@@ -86,8 +86,8 @@ class Preprocessor(object):
         pool = mp.Pool(use_cores)
         print('running in parallel on {} processes'.format(pool._processes))
         start_time = time.time()
-        for (i,shot) in enumerate(pool.imap_unordered(self.preprocess_single_file,shot_list_picked)):
-        #for (i,shot) in enumerate(map(self.preprocess_single_file,shot_list_picked)):
+        #this must be changed back to run in parallel -- cem       for (i,shot) in enumerate(pool.imap_unordered(self.preprocess_single_file,shot_list_picked)):
+        for (i,shot) in enumerate(map(self.preprocess_single_file,shot_list_picked)):
             sys.stdout.write('\r{}/{}'.format(i,len(shot_list_picked)))
             used_shots.append_if_valid(shot)
 

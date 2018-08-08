@@ -2,7 +2,7 @@
 
 #will do stuff in fs_path / [username] / signal_data | shot_lists | processed shots, etc.
 
-fs_path: '/work/04943/akshukla/maverick'
+fs_path: '/work/00004/michoski/maverick'
 target: 'hinge' #'maxhinge' #'maxhinge' #'binary' #'hinge' 
 num_gpus: 1 #40
 
@@ -11,7 +11,7 @@ paths:
     shot_list_dir: '/shot_lists/d3d/'
     tensorboard_save_path: '/Graph/'
     data: 'd3d_data_cem' #'d3d_to_jet_data' #'d3d_to_jet_data' # 'jet_to_d3d_data' #jet_data
-    specific_signals: ['rl01', 'rl02', 'rl03'] #['q95','li','ip','betan','energy','lm','pradcore','pradedge','pradtot','pin','torquein','tmamp1','tmamp2','tmfreq1','tmfreq2','pechin','energydt','ipdirect','etemp_profile','edens_profile'] #if left empty will use all valid signals defined on a machine. Only use if need a custom set
+    specific_signals: ['rl01'] #['q95','li','ip','betan','energy','lm','pradcore','pradedge','pradtot','pin','torquein','tmamp1','tmamp2','tmfreq1','tmfreq2','pechin','energydt','ipdirect','etemp_profile','edens_profile'] #if left empty will use all valid signals defined on a machine. Only use if need a custom set
     executable: "mpi_learn.py"
     shallow_executable: "learn.py"
 
