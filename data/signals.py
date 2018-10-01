@@ -172,9 +172,9 @@ ip = Signal("plasma current",["jpf/da/c2-ipla","d3d/ipspr15V"],[jet,d3d],is_ip=T
 iptarget = Signal("plasma current target",["d3d/ipsiptargt"],[d3d])
 iperr = Signal("plasma current error",["d3d/ipeecoil"],[d3d])
 
-rl01 = Signal("ragowski current1",["jpf/da/c2-ipla","d3d/rl01"],[jet,d3d],is_ip=True)
-rl02 = Signal("ragowski current2",["jpf/da/c2-ipla","d3d/rl02"],[jet,d3d],is_ip=False)
-rl03 = Signal("ragowski current3",["jpf/da/c2-ipla","d3d/rl03"],[jet,d3d],is_ip=False)
+rl01 = Signal("Rogowsky current1",["jpf/da/c2-ipla","d3d/rl01"],[jet,d3d],is_ip=True)
+rl02 = Signal("Rogowsky current2",["jpf/da/c2-ipla","d3d/rl02"],[jet,d3d],is_ip=False)
+rl03 = Signal("Rogowsky current3",["jpf/da/c2-ipla","d3d/rl03"],[jet,d3d],is_ip=False)
 
 
 li = Signal("internal inductance",["jpf/gs/bl-li<s","d3d/efsli"],[jet,d3d])
