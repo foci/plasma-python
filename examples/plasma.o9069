@@ -1,0 +1,374 @@
+all signals (determines which signals are downloaded and preprocessed):
+[Input Power (beam for d3d), Electron temperature profile, plasma current, stored energy, plasma current error, plasma current target, Electron density profile, Locked mode amplitude, internal inductance, Radiated Power Edge, stored energy time derivative, Radiated Power Core, Input Beam Torque, q95 safety factor, Kaggle ip, plasma current direction, Plasma density, Normalized Beta, Rogowsky current2, Rogowsky current3, Rogowsky current1, Radiated Power]
+Selected signals (determines which signals training is run on):
+[Kaggle ip]
+[0] importing Keras
+{'callbacks': {'list': ['earlystop'],
+               'metrics': ['val_loss', 'val_roc', 'train_loss'],
+               'mode': 'max',
+               'monitor': 'val_roc',
+               'patience': 5,
+               'write_grads': False},
+ 'data': {'T_max': 1000.0,
+          'T_min_warn': 30,
+          'T_warning': 1.024,
+          'augment_during_training': False,
+          'augmentation_mode': 'none',
+          'bleed_in': 0,
+          'bleed_in_equalize_sets': True,
+          'bleed_in_remove_from_test': True,
+          'bleed_in_repeat_fac': 1,
+          'current_end_thresh': 10000,
+          'current_index': 0,
+          'current_thresh': 750000,
+          'cut_shot_ends': True,
+          'dt': 0.001,
+          'equalize_classes': False,
+          'floatx': 'float32',
+          'norm_stat_range': 100.0,
+          'normalizer': 'var',
+          'plotting': False,
+          'positive_example_penalty': 1.0,
+          'recompute': False,
+          'recompute_normalization': False,
+          'signal_to_augment': 'None',
+          'target': <class 'plasma.models.targets.HingeTarget'>,
+          'use_shots': 200000,
+          'window_decay': 2,
+          'window_size': 10},
+ 'env': {'name': 'frnn', 'type': 'anaconda'},
+ 'fs_path': '/work/00004/michoski/maverick2',
+ 'model': {'backend': 'tensorflow',
+           'clipnorm': 10.0,
+           'dense_regularization': 0.001,
+           'dense_size': 128,
+           'dropout_prob': 0.1,
+           'extra_dense_input': False,
+           'ignore_timesteps': 100,
+           'length': 128,
+           'loss_scale_factor': 1.0,
+           'lr': 2e-05,
+           'lr_decay': 0.97,
+           'num_conv_filters': 128,
+           'num_conv_layers': 3,
+           'optimizer': 'adam',
+           'pool_size': 2,
+           'pred_batch_size': 128,
+           'pred_length': 200,
+           'regularization': 0.001,
+           'return_sequences': True,
+           'rnn_layers': 2,
+           'rnn_size': 200,
+           'rnn_type': 'LSTM',
+           'shallow': False,
+           'shallow_model': {'C': 1.0,
+                             'final_hidden_layer_size': 10,
+                             'kernel': 'rbf',
+                             'learning_rate': 0.1,
+                             'learning_rate_mlp': 0.0001,
+                             'max_depth': 3,
+                             'mlp_regularization': 0.0001,
+                             'n_estimators': 100,
+                             'num_hidden_layers': 3,
+                             'num_samples': 1000000,
+                             'scale_pos_weight': 10.0,
+                             'skip_train': False,
+                             'type': 'xgboost'},
+           'size_conv_filters': 3,
+           'skip': 1,
+           'stateful': True,
+           'use_batch_norm': False,
+           'use_bidirectional': False,
+           'warmup_steps': 0},
+ 'num_gpus': 1,
+ 'paths': {'all_machines': [d3d],
+           'all_signals': [Input Power (beam for d3d),
+                           plasma current,
+                           stored energy,
+                           plasma current error,
+                           plasma current target,
+                           Locked mode amplitude,
+                           internal inductance,
+                           Radiated Power Edge,
+                           stored energy time derivative,
+                           Radiated Power Core,
+                           Input Beam Torque,
+                           q95 safety factor,
+                           Kaggle ip,
+                           plasma current direction,
+                           Plasma density,
+                           Normalized Beta,
+                           Rogowsky current2,
+                           Rogowsky current3,
+                           Rogowsky current1,
+                           Radiated Power,
+                           Electron temperature profile,
+                           Electron density profile],
+           'all_signals_dict': {'betan': Normalized Beta,
+                                'dens': Plasma density,
+                                'edens_profile': Electron density profile,
+                                'energy': stored energy,
+                                'energydt': stored energy time derivative,
+                                'etemp_profile': Electron temperature profile,
+                                'ip': plasma current,
+                                'ipdirect': plasma current direction,
+                                'iperr': plasma current error,
+                                'iptarget': plasma current target,
+                                'kip': Kaggle ip,
+                                'li': internal inductance,
+                                'lm': Locked mode amplitude,
+                                'pin': Input Power (beam for d3d),
+                                'pradcore': Radiated Power Core,
+                                'pradedge': Radiated Power Edge,
+                                'pradtot': Radiated Power,
+                                'q95': q95 safety factor,
+                                'rl01': Rogowsky current1,
+                                'rl02': Rogowsky current2,
+                                'rl03': Rogowsky current3,
+                                'torquein': Input Beam Torque},
+           'base_path': '/work/00004/michoski/maverick2',
+           'csvlog_save_path': '/work/00004/michoski/maverick2/csv_logs/',
+           'data': 'd3d_data_kag',
+           'executable': 'mpi_learn.py',
+           'global_normalizer_path': '/work/00004/michoski/maverick2/normalization/normalization_signal_group_28232605674324713960696156680188008124.npz',
+           'model_save_path': '/work/00004/michoski/maverick2/model_checkpoints/',
+           'normalizer_path': '/work/00004/michoski/maverick2/normalization/normalization_signal_group_28232605674324713960696156680188008124.npz',
+           'output_path': '/work/00004/michoski/maverick2',
+           'processed_prepath': '/work/00004/michoski/maverick2/processed_shots/signal_group_28232605674324713960696156680188008124/',
+           'results_prepath': '/work/00004/michoski/maverick2/results/',
+           'saved_shotlist_path': '/work/00004/michoski/maverick2/processed_shotlists/d3d_data_kag/shot_lists_signal_group_28232605674324713960696156680188008124.npz',
+           'shallow_executable': 'learn.py',
+           'shot_files': [machine: d3d
+d3d data since shot 125500],
+           'shot_files_all': [machine: d3d
+d3d data since shot 125500],
+           'shot_files_test': [],
+           'shot_list_dir': '/work/00004/michoski/maverick2/shot_lists/d3d/',
+           'signal_prepath': '/work/00004/michoski/maverick2/../../../05447/merlo/maverick/plasma_python/signal_data_new/',
+           'specific_signals': ['kip'],
+           'tensorboard_save_path': '/work/00004/michoski/maverick2/Graph/',
+           'use_signals': [Kaggle ip],
+           'use_signals_dict': {'betan': Normalized Beta,
+                                'dens': Plasma density,
+                                'edens_profile': Electron density profile,
+                                'energy': stored energy,
+                                'etemp_profile': Electron temperature profile,
+                                'ip': plasma current,
+                                'ipdirect': plasma current direction,
+                                'iperr': plasma current error,
+                                'iptarget': plasma current target,
+                                'kip': Kaggle ip,
+                                'li': internal inductance,
+                                'lm': Locked mode amplitude,
+                                'pin': Input Power (beam for d3d),
+                                'pradcore': Radiated Power Core,
+                                'pradedge': Radiated Power Edge,
+                                'q95': q95 safety factor,
+                                'rl01': Rogowsky current1,
+                                'rl02': Rogowsky current2,
+                                'rl03': Rogowsky current3,
+                                'torquein': Input Beam Torque}},
+ 'target': 'hinge',
+ 'training': {'as_array_of_shots': True,
+              'batch_generator_warmup_steps': 0,
+              'batch_size': 128,
+              'data_parallel': False,
+              'hyperparam_tuning': False,
+              'max_patch_length': 100000,
+              'num_batches_minimum': 200,
+              'num_epochs': 20,
+              'num_shots_at_once': 200,
+              'ranking_difficulty_fac': 1.0,
+              'shuffle_training': True,
+              'train_frac': 0.75,
+              'use_mock_data': False,
+              'validation_frac': 0.33},
+ 'user_name': 'michoski'}
+{'callbacks': {'list': ['earlystop'],
+               'metrics': ['val_loss', 'val_roc', 'train_loss'],
+               'mode': 'max',
+               'monitor': 'val_roc',
+               'patience': 5,
+               'write_grads': False},
+ 'data': {'T_max': 1000.0,
+          'T_min_warn': 30,
+          'T_warning': 1.024,
+          'augment_during_training': False,
+          'augmentation_mode': 'none',
+          'bleed_in': 0,
+          'bleed_in_equalize_sets': True,
+          'bleed_in_remove_from_test': True,
+          'bleed_in_repeat_fac': 1,
+          'current_end_thresh': 10000,
+          'current_index': 0,
+          'current_thresh': 750000,
+          'cut_shot_ends': True,
+          'dt': 0.001,
+          'equalize_classes': False,
+          'floatx': 'float32',
+          'norm_stat_range': 100.0,
+          'normalizer': 'var',
+          'plotting': False,
+          'positive_example_penalty': 1.0,
+          'recompute': False,
+          'recompute_normalization': False,
+          'signal_to_augment': 'None',
+          'target': <class 'plasma.models.targets.HingeTarget'>,
+          'use_shots': 200000,
+          'window_decay': 2,
+          'window_size': 10},
+ 'env': {'name': 'frnn', 'type': 'anaconda'},
+ 'fs_path': '/work/00004/michoski/maverick2',
+ 'model': {'backend': 'tensorflow',
+           'clipnorm': 10.0,
+           'dense_regularization': 0.001,
+           'dense_size': 128,
+           'dropout_prob': 0.1,
+           'extra_dense_input': False,
+           'ignore_timesteps': 100,
+           'length': 128,
+           'loss_scale_factor': 1.0,
+           'lr': 2e-05,
+           'lr_decay': 0.97,
+           'num_conv_filters': 128,
+           'num_conv_layers': 3,
+           'optimizer': 'adam',
+           'pool_size': 2,
+           'pred_batch_size': 128,
+           'pred_length': 200,
+           'regularization': 0.001,
+           'return_sequences': True,
+           'rnn_layers': 2,
+           'rnn_size': 200,
+           'rnn_type': 'LSTM',
+           'shallow': False,
+           'shallow_model': {'C': 1.0,
+                             'final_hidden_layer_size': 10,
+                             'kernel': 'rbf',
+                             'learning_rate': 0.1,
+                             'learning_rate_mlp': 0.0001,
+                             'max_depth': 3,
+                             'mlp_regularization': 0.0001,
+                             'n_estimators': 100,
+                             'num_hidden_layers': 3,
+                             'num_samples': 1000000,
+                             'scale_pos_weight': 10.0,
+                             'skip_train': False,
+                             'type': 'xgboost'},
+           'size_conv_filters': 3,
+           'skip': 1,
+           'stateful': True,
+           'use_batch_norm': False,
+           'use_bidirectional': False,
+           'warmup_steps': 0},
+ 'num_gpus': 1,
+ 'paths': {'all_machines': [d3d],
+           'all_signals': [Input Power (beam for d3d),
+                           plasma current,
+                           stored energy,
+                           plasma current error,
+                           plasma current target,
+                           Locked mode amplitude,
+                           internal inductance,
+                           Radiated Power Edge,
+                           stored energy time derivative,
+                           Radiated Power Core,
+                           Input Beam Torque,
+                           q95 safety factor,
+                           Kaggle ip,
+                           plasma current direction,
+                           Plasma density,
+                           Normalized Beta,
+                           Rogowsky current2,
+                           Rogowsky current3,
+                           Rogowsky current1,
+                           Radiated Power,
+                           Electron temperature profile,
+                           Electron density profile],
+           'all_signals_dict': {'betan': Normalized Beta,
+                                'dens': Plasma density,
+                                'edens_profile': Electron density profile,
+                                'energy': stored energy,
+                                'energydt': stored energy time derivative,
+                                'etemp_profile': Electron temperature profile,
+                                'ip': plasma current,
+                                'ipdirect': plasma current direction,
+                                'iperr': plasma current error,
+                                'iptarget': plasma current target,
+                                'kip': Kaggle ip,
+                                'li': internal inductance,
+                                'lm': Locked mode amplitude,
+                                'pin': Input Power (beam for d3d),
+                                'pradcore': Radiated Power Core,
+                                'pradedge': Radiated Power Edge,
+                                'pradtot': Radiated Power,
+                                'q95': q95 safety factor,
+                                'rl01': Rogowsky current1,
+                                'rl02': Rogowsky current2,
+                                'rl03': Rogowsky current3,
+                                'torquein': Input Beam Torque},
+           'base_path': '/work/00004/michoski/maverick2',
+           'csvlog_save_path': '/work/00004/michoski/maverick2/csv_logs/',
+           'data': 'd3d_data_kag',
+           'executable': 'mpi_learn.py',
+           'global_normalizer_path': '/work/00004/michoski/maverick2/normalization/normalization_signal_group_28232605674324713960696156680188008124.npz',
+           'model_save_path': '/work/00004/michoski/maverick2/model_checkpoints/',
+           'normalizer_path': '/work/00004/michoski/maverick2/normalization/normalization_signal_group_28232605674324713960696156680188008124.npz',
+           'output_path': '/work/00004/michoski/maverick2',
+           'processed_prepath': '/work/00004/michoski/maverick2/processed_shots/signal_group_28232605674324713960696156680188008124/',
+           'results_prepath': '/work/00004/michoski/maverick2/results/',
+           'saved_shotlist_path': '/work/00004/michoski/maverick2/processed_shotlists/d3d_data_kag/shot_lists_signal_group_28232605674324713960696156680188008124.npz',
+           'shallow_executable': 'learn.py',
+           'shot_files': [machine: d3d
+d3d data since shot 125500],
+           'shot_files_all': [machine: d3d
+d3d data since shot 125500],
+           'shot_files_test': [],
+           'shot_list_dir': '/work/00004/michoski/maverick2/shot_lists/d3d/',
+           'signal_prepath': '/work/00004/michoski/maverick2/../../../05447/merlo/maverick/plasma_python/signal_data_new/',
+           'specific_signals': ['kip'],
+           'tensorboard_save_path': '/work/00004/michoski/maverick2/Graph/',
+           'use_signals': [Kaggle ip],
+           'use_signals_dict': {'betan': Normalized Beta,
+                                'dens': Plasma density,
+                                'edens_profile': Electron density profile,
+                                'energy': stored energy,
+                                'etemp_profile': Electron temperature profile,
+                                'ip': plasma current,
+                                'ipdirect': plasma current direction,
+                                'iperr': plasma current error,
+                                'iptarget': plasma current target,
+                                'kip': Kaggle ip,
+                                'li': internal inductance,
+                                'lm': Locked mode amplitude,
+                                'pin': Input Power (beam for d3d),
+                                'pradcore': Radiated Power Core,
+                                'pradedge': Radiated Power Edge,
+                                'q95': q95 safety factor,
+                                'rl01': Rogowsky current1,
+                                'rl02': Rogowsky current2,
+                                'rl03': Rogowsky current3,
+                                'torquein': Input Beam Torque}},
+ 'target': 'hinge',
+ 'training': {'as_array_of_shots': True,
+              'batch_generator_warmup_steps': 0,
+              'batch_size': 128,
+              'data_parallel': False,
+              'hyperparam_tuning': False,
+              'max_patch_length': 100000,
+              'num_batches_minimum': 200,
+              'num_epochs': 20,
+              'num_shots_at_once': 200,
+              'ranking_difficulty_fac': 1.0,
+              'shuffle_training': True,
+              'train_frac': 0.75,
+              'use_mock_data': False,
+              'validation_frac': 0.33},
+ 'user_name': 'michoski'}
+preprocessing all shotsshots_picked = 2220
+running in parallel on 30 processes
+163433 exists.161096 exists.164229 exists.162451 exists.161005 exists.162448 exists.161214 exists.161130 exists.162937 exists.163828 exists.163312 exists.162946 exists.162875 exists.163002 exists.162338 exists.163792 exists.163791 exists.164409 exists.164518 exists.162733 exists.161398 exists.164273 exists.162445 exists.163324 exists.161183 exists.161110 exists.163790 exists.161372 exists.163314 exists.161028 exists.163464 exists.162174 exists.163264 exists.164656 exists.163512 exists.160979 exists.163067 exists.161451 exists.163810 exists.161228 exists.164046 exists.163200 exists.163308 exists.163540 exists.161436 exists.164406 exists.161275 exists.162992 exists.162249 exists.163513 exists.164539 exists.163155 exists.161150 exists.162175 exists.161164 exists.163253 exists.162460 exists.164036 exists.162753 exists.163507 exists.161455 exists.164445 exists.164652 exists.163714 exists.161559 exists.164123 exists.162263 exists.163718 exists.162749 exists.162169 exists.163281 exists.164554 exists.162835 exists.164410 exists.164695 exists.161266 exists.163542 exists.162429 exists.164441 exists.162409 exists.161384 exists.163236 exists.161057 exists.163799 exists.164438 exists.163601 exists.161147 exists.164096 exists.161643 exists.163068 exists.163441 exists.164062 exists.161051 exists.161507 exists.164092 exists.161245 exists.162556 exists.161417 exists.162894 exists.162353 exists.161172 exists.163019 exists.162217 exists.161063 exists.163112 exists.162888 exists.164448 exists.162303 exists.160966 exists.162715 exists.161497 exists.160950 exists.163205 exists.164431 exists.162797 exists.163293 exists.164574 exists.161646 exists.164249 exists.162907 exists.163739 exists.162177 exists.162788 exists.163721 exists.163106 exists.164529 exists.163143 exists.162693 exists.164175 exists.161567 exists.163322 exists.162490 exists.162181 exists.164213 exists.161016 exists.161322 exists.164492 exists.162526 exists.162319 exists.164136 exists.163665 exists.162941 exists.161490 exists.163456 exists.163713 exists.161623 exists.162928 exists.164553 exists.161554 exists.164718 exists.163075 exists.161181 exists.164357 exists.164260 exists.162553 exists.162246 exists.161437 exists.164701 exists.163752 exists.164207 exists.161316 exists.163237 exists.164404 exists.164109 exists.161527 exists.160985 exists.161348 exists.164403 exists.162922 exists.162237 exists.161299 exists.161560 exists.161450 exists.164623 exists.164329 exists.162722 exists.162841 exists.161148 exists.163543 exists.164568 exists.164412 exists.164126 exists.162743 exists.162287 exists.164074 exists.161185 exists.162763 exists.161294 exists.163468 exists.164346 exists.164298 exists.163275 exists.162967 exists.162999 exists.164325 exists.161034 exists.162446 exists.163467 exists.161595 exists.163795 exists.163457 exists.162504 exists.162957 exists.161330 exists.161410 exists.164678 exists.162413 exists.162286 exists.163251 exists.164639 exists.161235 exists.160971 exists.161284 exists.161473 exists.162276 exists.161082 exists.162333 exists.163827 exists.164603 exists.162838 exists.161015 exists.164689 exists.161257 exists.164654 exists.162895 exists.160951 exists.161274 exists.161223 exists.163545 exists.164443 exists.162250 exists.162402 exists.161383 exists.162767 exists.164328 exists.162936 exists.163304 exists.164294 exists.162771 exists.161160 exists.162343 exists.164206 exists.163706 exists.163028 exists.161479 exists.163325 exists.162439 exists.164551 exists.161197 exists.162302 exists.161173 exists.160970 exists.164496 exists.163296 exists.162731 exists.161561 exists.163825 exists.161626 exists.164585 exists.161392 exists.160988 exists.162912 exists.161213 exists.162538 exists.163161 exists.164321 exists.164596 exists.161047 exists.163600 exists.162792 exists.163323 exists.164144 exists.161339 exists.161165 exists.162940 exists.163173 exists.163473 exists.164285 exists.162247 exists.162403 exists.161298 exists.164555 exists.164254 exists.160945 exists.161518 exists.163717 exists.162987 exists.163824 exists.161649 exists.164355 exists.162876 exists.164583 exists.162252 exists.164433 exists.162824 exists.161196 exists.161003 exists.161381 exists.162710 exists.161715 exists.162422 exists.162168 exists.162837 exists.161566 exists.162559 exists.164484 exists.162844 exists.162874 exists.163515 exists.162271 exists.163836 exists.164434 exists.162786 exists.162533 exists.163254 exists.162778 exists.164178 exists.162910 exists.161113 exists.163551 exists.163134 exists.162901 exists.163436 exists.164552 exists.160980 exists.161314 exists.163700 exists.164478 exists.161029 exists.161066 exists.162306 exists.164599 exists.163437 exists.163784 exists.164556 exists.161641 exists.162521 exists.163217 exists.161352 exists.162318 exists.162497 exists.163449 exists.162340 exists.164362 exists.164281 exists.161326 exists.162951 exists.161386 exists.161639 exists.162467 exists.162431 exists.164192 exists.161459 exists.164093 exists.161243 exists.161007 exists.162534 exists.163440 exists.164106 exists.161433 exists.163820 exists.161385 exists.163664 exists.162809 exists.164536 exists.163503 exists.164047 exists.164150 exists.161476 exists.164715 exists.164050 exists.164104 exists.162342 exists.161591 exists.160994 exists.161368 exists.164503 exists.164559 exists.163243 exists.164369 exists.162820 exists.163544 exists.161494 exists.162993 exists.162238 exists.163472 exists.164549 exists.164508 exists.162219 exists.161458 exists.164708 exists.161525 exists.162492 exists.163611 exists.161468 exists.163760 exists.161612 exists.164619 exists.163287 exists.162493 exists.164271 exists.164650 exists.162458 exists.164517 exists.163090 exists.163477 exists.164480 exists.161156 exists.162211 exists.163800 exists.163809 exists.164225 exists.163835 exists.160949 exists.161481 exists.163039 exists.162764 exists.161058 exists.162463 exists.161583 exists.161395 exists.162484 exists.164316 exists.161361 exists.161200 exists.163439 exists.164317 exists.161375 exists.162790 exists.163479 exists.163095 exists.162248 exists.162499 exists.164134 exists.161425 exists.161434 exists.163216 exists.163101 exists.161454 exists.163478 exists.164629 exists.164264 exists.164105 exists.164279 exists.164364 exists.164456 exists.164626 exists.161083 exists.161286 exists.164073 exists.160968 exists.162996 exists.161125 exists.162816 exists.163023 exists.162454 exists.160939 exists.162725 exists.163006 exists.161363 exists.162444 exists.161424 exists.164212 exists.162441 exists.164548 exists.161124 exists.164671 exists.163083 exists.163650 exists.164220 exists.162994 exists.161296 exists.162726 exists.162900 exists.162489 exists.163178 exists.164040 exists.164471 exists.162836 exists.161413 exists.162746 exists.163482 exists.163536 exists.162173 exists.161469 exists.164424 exists.161262 exists.163054 exists.161139 exists.164547 exists.164620 exists.163315 exists.162871 exists.164641 exists.163069 exists.164215 exists.161598 exists.164681 exists.164618 exists.162543 exists.164505 exists.161448 exists.162418 exists.163484 exists.162542 exists.162815 exists.163811 exists.163476 exists.164495 exists.162806 exists.164195 exists.162438 exists.163455 exists.161159 exists.161393 exists.163163 exists.164289 exists.161571 exists.163538 exists.161366 exists.164408 exists.163255 exists.162520 exists.164514 exists.163458 exists.164651 exists.164371 exists.162277 exists.163492 exists.164711 exists.162784 exists.161154 exists.164393 exists.160997 exists.161572 exists.161550 exists.164397 exists.162793 exists.163076 exists.163244 exists.164262 exists.164638 exists.162280 exists.163523 exists.163280 exists.164609 exists.162207 exists.161038 exists.164089 exists.163283 exists.163509 exists.161346 exists.161031 exists.164702 exists.162314 exists.161090 exists.162741 exists.162889 exists.164653 exists.163655 exists.163734 exists.162430 exists.164330 exists.163812 exists.163020 exists.164270 exists.162769 exists.164280 exists.163104 exists.164304 exists.164067 exists.161401 exists.164070 exists.161333 exists.163487 exists.161570 exists.163743 exists.162789 exists.163089 exists.164611 exists.162555 exists.164720 exists.161000 exists.164413 exists.161168 exists.161628 exists.162834 exists.162334 exists.162808 exists.162832 exists.164356 exists.161032 exists.163320 exists.163501 exists.162285 exists.164540 exists.162307 exists.161470 exists.161112 exists.162468 exists.163212 exists.164374 exists.162346 exists.164685 exists.161239 exists.161319 exists.163087 exists.161499 exists.162407 exists.164244 exists.164315 exists.164637 exists.161043 exists.162893 exists.162316 exists.161244 exists.161155 exists.163805 exists.160944 exists.161035 exists.163209 exists.162500 exists.163461 exists.164291 exists.164504 exists.163711 exists.163058 exists.162716 exists.161217 exists.164333 exists.161412 exists.163228 exists.161260 exists.163446 exists.161369 exists.163469 exists.160972 exists.162794 exists.162866 exists.162486 exists.161030 exists.164563 exists.162279 exists.164714 exists.161041 exists.164143 exists.160993 exists.163658 exists.163290 exists.164570 exists.161119 exists.162991 exists.163137 exists.162976 exists.161078 exists.163725 exists.162457 exists.163203 exists.164659 exists.161485 exists.162896 exists.164674 exists.164085 exists.161288 exists.163049 exists.164239 exists.163660 exists.164707 exists.161137 exists.163247 exists.161310 exists.163295 exists.164530 exists.163225 exists.162821 exists.164562 exists.164029 exists.162720 exists.161453 exists.161027 exists.161205 exists.163035 exists.161526 exists.163525 exists.164663 exists.163128 exists.161179 exists.163737 exists.161477 exists.163504 exists.161563 exists.162414 exists.161265 exists.163109 exists.162867 exists.161237 exists.161516 exists.161431 exists.162954 exists.162433 exists.161077 exists.163175 exists.164512 exists.163082 exists.164571 exists.162974 exists.162898 exists.162240 exists.163214 exists.164334 exists.163136 exists.164662 exists.161405 exists.162301 exists.164349 exists.161337 exists.164510 exists.162956 exists.163074 exists.161006 exists.164335 exists.160943 exists.161291 exists.161601 exists.161637 exists.163661 exists.161321 exists.162926 exists.163252 exists.161406 exists.164241 exists.163202 exists.162892 exists.164238 exists.163332 exists.164680 exists.161402 exists.162920 exists.162242 exists.162352 exists.164688 exists.163088 exists.164079 exists.164194 exists.162288 exists.164452 exists.161558 exists.161589 exists.164580 exists.161512 exists.164261 exists.161136 exists.162750 exists.162507 exists.163438 exists.162544 exists.163208 exists.161440 exists.164716 exists.161087 exists.164693 exists.163483 exists.162943 exists.162462 exists.161252 exists.162304 exists.164090 exists.161289 exists.164660 exists.161617 exists.164076 exists.162983 exists.164314 exists.164602 exists.163094 exists.163218 exists.164223 exists.164405 exists.163215 exists.163122 exists.164208 exists.161219 exists.161605 exists.162903 exists.163499 exists.163832 exists.164243 exists.161404 exists.161610 exists.163040 exists.163720 exists.163459 exists.163286 exists.161075 exists.161327 exists.162917 exists.161054 exists.163235 exists.162830 exists.163548 exists.163463 exists.161471 exists.161332 exists.161553 exists.162978 exists.163031 exists.161170 exists.161272 exists.164472 exists.164402 exists.162216 exists.164210 exists.163119 exists.161085 exists.162498 exists.161467 exists.164624 exists.164507 exists.164248 exists.161227 exists.161556 exists.162713 exists.163336 exists.163123 exists.161608 exists.164610 exists.162973 exists.163121 exists.162522 exists.163263 exists.163245 exists.163604 exists.163327 exists.164222 exists.164176 exists.164673 exists.164704 exists.161280 exists.163549 exists.161301 exists.164532 exists.163110 exists.161157 exists.163274 exists.164354 exists.161276 exists.161338 exists.161474 exists.161435 exists.162942 exists.161218 exists.163204 exists.164523 exists.162964 exists.163519 exists.164078 exists.164326 exists.160975 exists.162450 exists.161012 exists.163829 exists.162208 exists.163278 exists.164311 exists.161224 exists.161616 exists.161645 exists.162817 exists.161478 exists.161259 exists.164300 exists.164368 exists.164516 exists.161542 exists.163511 exists.163120 exists.163470 exists.161573 exists.162921 exists.162347 exists.164703 exists.162558 exists.163078 exists.162456 exists.163485 exists.163723 exists.163782 exists.161590 exists.161306 exists.161365 exists.164684 exists.163317 exists.163157 exists.163297 exists.163328 exists.163786 exists.161287 exists.161111 exists.163466 exists.164432 exists.160940 exists.162845 exists.164083 exists.163207 exists.163170 exists.162243 exists.163261 exists.161545 exists.162452 exists.161307 exists.162305 exists.164614 exists.162469 exists.161353 exists.162721 exists.163663 exists.162339 exists.163431 exists.163535 exists.164396 exists.164469 exists.161094 exists.163428 exists.161253 exists.162691 exists.164462 exists.164390 exists.162762 exists.161184 exists.163258 exists.162298 exists.161052 exists.163802 exists.162495 exists.164621 exists.164318 exists.162244 exists.163738 exists.164268 exists.163801 exists.162948 exists.162172 exists.162897 exists.161049 exists.161042 exists.163789 exists.163071 exists.163176 exists.163656 exists.161350 exists.161552 exists.161194 exists.163156 exists.161635 exists.162506 exists.164506 exists.162899 exists.161010 exists.164193 exists.161604 exists.161519 exists.162443 exists.164612 exists.164077 exists.164607 exists.162747 exists.163032 exists.162428 exists.161428 exists.161335 exists.163091 exists.164501 exists.161320 exists.163331 exists.160969 exists.163761 exists.161537 exists.164322 exists.161432 exists.163179 exists.161449 exists.161530 exists.163241 exists.164670 exists.163831 exists.163754 exists.163249 exists.164464 exists.161230 exists.164561 exists.164498 exists.164042 exists.164263 exists.162524 exists.163465 exists.162966 exists.162350 exists.163702 exists.162779 exists.161599 exists.163651 exists.162729 exists.163070 exists.163462 exists.162408 exists.161528 exists.162405 exists.163445 exists.161008 exists.164242 exists.163310 exists.164351 exists.163757 exists.163005 exists.163531 exists.161290 exists.164407 exists.162485 exists.162744 exists.162337 exists.164440 exists.164375 exists.164636 exists.164037 exists.163787 exists.163785 exists.162727 exists.162909 exists.162410 exists.164323 exists.162798 exists.163027 exists.162734 exists.161614 exists.162510 exists.164522 exists.162541 exists.163199 exists.162869 exists.163654 exists.162315 exists.164635 exists.163435 exists.163595 exists.162491 exists.162262 exists.163239 exists.161391 exists.162955 exists.160965 exists.164111 exists.162290 exists.161121 exists.163430 exists.164332 exists.161364 exists.162986 exists.162781 exists.164710 exists.161033 exists.161638 exists.164086 exists.161171 exists.164717 exists.162975 exists.161037 exists.160987 exists.162997 exists.160999 exists.162210 exists.163553 exists.161524 exists.164451 exists.162312 exists.162914 exists.164598 exists.161399 exists.162218 exists.164324 exists.161279 exists.161419 exists.162995 exists.162404 exists.164642 exists.163182 exists.164698 exists.162255 exists.162494 exists.164110 exists.162828 exists.161633 exists.163211 exists.161308 exists.163705 exists.163606 exists.161056 exists.161045 exists.162496 exists.163518 exists.162842 exists.161374 exists.164211 exists.161261 exists.162765 exists.163246 exists.160948 exists.161439 exists.162827 exists.161324 exists.164275 exists.163727 exists.162223 exists.163045 exists.161648 exists.162519 exists.162180 exists.163227 exists.164679 exists.163481 exists.164391 exists.164569 exists.162932 exists.162335 exists.161370 exists.161593 exists.164721 exists.161371 exists.164170 exists.163060 exists.162166 exists.164135 exists.161420 exists.162214 exists.164186 exists.164657 exists.163166 exists.164169 exists.162535 exists.161627 exists.164103 exists.163500 exists.163826 exists.163034 exists.161606 exists.164071 exists.164515 exists.162780 exists.163537 exists.164640 exists.163316 exists.163607 exists.164301 exists.164237 exists.161017 exists.162348 exists.161116 exists.162284 exists.161011 exists.163753 exists.162466 exists.161064 exists.161403 exists.164041 exists.163107 exists.161472 exists.162465 exists.163238 exists.162833 exists.161502 exists.162182 exists.161189 exists.161529 exists.164360 exists.164292 exists.161207 exists.163715 exists.161315 exists.163521 exists.162787 exists.164363 exists.161355 exists.161080 exists.164447 exists.163707 exists.164377 exists.164582 exists.163256 exists.164372 exists.164486 exists.164098 exists.161292 exists.161492 exists.163085 exists.163550 exists.164573 exists.162317 exists.162748 exists.164274 exists.164633 exists.163151 exists.163125 exists.161341 exists.163174 exists.162421 exists.162215 exists.162988 exists.161146 exists.163532 exists.161642 exists.163130 exists.164560 exists.162220 exists.163223 exists.163146 exists.161282 exists.164491 exists.162310 exists.161106 exists.162273 exists.163666 exists.163001 exists.163132 exists.163444 exists.161186 exists.161202 exists.161278 exists.163229 exists.164565 exists.161514 exists.161575 exists.161541 exists.164319 exists.164385 exists.162281 exists.161180 exists.161586 exists.162706 exists.162800 exists.164130 exists.162944 exists.164337 exists.161397 exists.164350 exists.163127 exists.163000 exists.163822 exists.164226 exists.164632 exists.162960 exists.163279 exists.161019 exists.162982 exists.162254 exists.162525 exists.164581 exists.164606 exists.163759 exists.163475 exists.163524 exists.164494 exists.161358 exists.161095 exists.162977 exists.162470 exists.161117 exists.164113 exists.161258 exists.164305 exists.162537 exists.164454 exists.164601 exists.161236 exists.161067 exists.162245 exists.161588 exists.164709 exists.164694 exists.161634 exists.164542 exists.161086 exists.161004 exists.164251 exists.163474 exists.162447 exists.163024 exists.164511 exists.163294 exists.161394 exists.161234 exists.163602 exists.162523 exists.161521 exists.162532 exists.161231 exists.161359 exists.164124 exists.164455 exists.162259 exists.161127 exists.161014 exists.164426 exists.162931 exists.164600 exists.161548 exists.164331 exists.163609 exists.163788 exists.163053 exists.164336 exists.164033 exists.162905 exists.161603 exists.161076 exists.163226 exists.164125 exists.163708 exists.163704 exists.164084 exists.163162 exists.164265 exists.164290 exists.161557 exists.161246 exists.164576 exists.162349 exists.164666 exists.164558 exists.164320 exists.162289 exists.162952 exists.161263 exists.162783 exists.164228 exists.164465 exists.161475 exists.164146 exists.161138 exists.164584 exists.163169 exists.162752 exists.162320 exists.161388 exists.163547 exists.162754 exists.162961 exists.161349 exists.163219 exists.161001 exists.163516 exists.161232 exists.161555 exists.161101 exists.163158 exists.164252 exists.163004 exists.161104 exists.162979 exists.163033 exists.164647 exists.161128 exists.161297 exists.163172 exists.164687 exists.162777 exists.162442 exists.163807 exists.164648 exists.163073 exists.162309 exists.162707 exists.162256 exists.164528 exists.161174 exists.163021 exists.163603 exists.162823 exists.161536 exists.161544 exists.161347 exists.163240 exists.161611 exists.164138 exists.162919 exists.161065 exists.164107 exists.162253 exists.164045 exists.164557 exists.163248 exists.164376 exists.163105 exists.164723 exists.161229 exists.164044 exists.163709 exists.163059 exists.161442 exists.163510 exists.161607 exists.162509 exists.164132 exists.163135 exists.163319 exists.164065 exists.161443 exists.164430 exists.161142 exists.162354 exists.162985 exists.164534 exists.161596 exists.161166 exists.161511 exists.161192 exists.161584 exists.161039 exists.160998 exists.161300 exists.162257 exists.161517 exists.161093 exists.163590 exists.163432 exists.161158 exists.161193 exists.164069 exists.164622 exists.164649 exists.164145 exists.162423 exists.161356 exists.161331 exists.164303 exists.161510 exists.161129 exists.162505 exists.162415 exists.161496 exists.163703 exists.164299 exists.161273 exists.161354 exists.161256 exists.164646 exists.161565 exists.163443 exists.161241 exists.162766 exists.164722 exists.164655 exists.162163 exists.161540 exists.164485 exists.163460 exists.164468 exists.161495 exists.162540 exists.164250 exists.163517 exists.161400 exists.163591 exists.164672 exists.162400 exists.163819 exists.162332 exists.161108 exists.162459 exists.161143 exists.162711 exists.162785 exists.160973 exists.163165 exists.161367 exists.161018 exists.164075 exists.163250 exists.161644 exists.162870 exists.162692 exists.162295 exists.163103 exists.161456 exists.161220 exists.161418 exists.164205 exists.163260 exists.164519 exists.162539 exists.162911 exists.164142 exists.161509 exists.161465 exists.164224 exists.164686 exists.163262 exists.163649 exists.164481 exists.164308 exists.161212 exists.161615 exists.161336 exists.160964 exists.162822 exists.163712 exists.161088 exists.162843 exists.163522 exists.164483 exists.163150 exists.163171 exists.164473 exists.164245 exists.162968 exists.161460 exists.164564 exists.163025 exists.164352 exists.160986 exists.163608 exists.164140 exists.164667 exists.162251 exists.161055 exists.162300 exists.164288 exists.163043 exists.163716 exists.162419 exists.161254 exists.161115 exists.164661 exists.161123 exists.161447 exists.163722 exists.163653 exists.162728 exists.162963 exists.163648 exists.161534 exists.164399 exists.162695 exists.163303 exists.163803 exists.161602 exists.162718 exists.161122 exists.161426 exists.163181 exists.164068 exists.161501 exists.162440 exists.164579 exists.163498 exists.164664 exists.161013 exists.162927 exists.164276 exists.162933 exists.162178 exists.162770 exists.162839 exists.164575 exists.164094 exists.163277 exists.161625 exists.161484 exists.162761 exists.161515 exists.161650 exists.161281 exists.163534 exists.164114 exists.162239 exists.163830 exists.161562 exists.164427 exists.162420 exists.164358 exists.162934 exists.161153 exists.162167 exists.164087 exists.162804 exists.164032 exists.164128 exists.163111 exists.163724 exists.163333 exists.163505 exists.164361 exists.164428 exists.161587 exists.164497 exists.164493 exists.163821 exists.163044 exists.164064 exists.163030 exists.164191 exists.164129 exists.160974 exists.164283 exists.162950 exists.161582 exists.161382 exists.164214 exists.162958 exists.163552 exists.162768 exists.164307 exists.163126 exists.162819 exists.161328 exists.164395 exists.163796 exists.164482 exists.163164 exists.162528 exists.161340 exists.161242 exists.162708 exists.163220 exists.161226 exists.163149 exists.164088 exists.164209 exists.162807 exists.162482 exists.163036 exists.162872 exists.162164 exists.161480 exists.163210 exists.162801 exists.164066 exists.164133 exists.162697 exists.164247 exists.161140 exists.163497 exists.164605 exists.163710 exists.163129 exists.162989 exists.162529 exists.161222 exists.163029 exists.164095 exists.163605 exists.161609 exists.161103 exists.164218 exists.163042 exists.162918 exists.161498 exists.163321 exists.164682 exists.163115 exists.163114 exists.164174 exists.164499 exists.162511 exists.163305 exists.164353 exists.164398 exists.161216 exists.161025 exists.161547 exists.164216 exists.160960 exists.162432 exists.162398 exists.164502 exists.162724 exists.161107 exists.163092 exists.162547 exists.161204 exists.163480 exists.163657 exists.161247 exists.164436 exists.162891 exists.162176 exists.163539 exists.164477 exists.161070 exists.164172 exists.162502 exists.164302 exists.162274 exists.164463 exists.163326 exists.164137 exists.164675 exists.162258 exists.164724 exists.162865 exists.161549 exists.163450 exists.164102 exists.163026 exists.161597 exists.161613 exists.164509 exists.162341 exists.163311 exists.164577 exists.164031 exists.161221 exists.162795 exists.163108 exists.161629 exists.164131 exists.163808 exists.160995 exists.162890 exists.161416 exists.162818 exists.163758 exists.162840 exists.162717 exists.162915 exists.162261 exists.163719 exists.163750 exists.161120 exists.162796 exists.162705 exists.160938 exists.161182 exists.161632 exists.164500 exists.164628 exists.164049 exists.160978 exists.163273 exists.163794 exists.163749 exists.161427 exists.163056 exists.164179 exists.163061 exists.161491 exists.161105 exists.164388 exists.161318 exists.164627 exists.161309 exists.164713 exists.164034 exists.163145 exists.161373 exists.161053 exists.163276 exists.164367 exists.161429 exists.162829 exists.163806 exists.164572 exists.164127 exists.161535 exists.161376 exists.162913 exists.160984 exists.163117 exists.164643 exists.164531 exists.161647 exists.162782 exists.162984 exists.164188 exists.160942 exists.161149 exists.163118 exists.161520 exists.161446 exists.162803 exists.163541 exists.164168 exists.164384 exists.161539 exists.164190 exists.163530 exists.161396 exists.164187 exists.161345 exists.164467 exists.164267 exists.161503 exists.164533 exists.164227 exists.162527 exists.164593 exists.164253 exists.162170 exists.161040 exists.161135 exists.163471 exists.164449 exists.161357 exists.162742 exists.161118 exists.164697 exists.163099 exists.163735 exists.161046 exists.162453 exists.161141 exists.164246 exists.163490 exists.164185 exists.162417 exists.163159 exists.163751 exists.163144 exists.162799 exists.161152 exists.163491 exists.163282 exists.160947 exists.162264 exists.163147 exists.163330 exists.162712 exists.164370 exists.163288 exists.163699 exists.164439 exists.161600 exists.162802 exists.161522 exists.164435 exists.162810 exists.161169 exists.161191 exists.161074 exists.161508 exists.161461 exists.163486 exists.162536 exists.163051 exists.161414 exists.162760 exists.162483 exists.163177 exists.163662 exists.161592 exists.161201 exists.164625 exists.162209 exists.164604 exists.164141 exists.162694 exists.162461 exists.162714 exists.162278 exists.162336 exists.163502 exists.162401 exists.163222 exists.164699 exists.161430 exists.161594 exists.162406 exists.162980 exists.163184 exists.162776 exists.164327 exists.163307 exists.163793 exists.163318 exists.161195 exists.161198 exists.161362 exists.161543 exists.161500 exists.161036 exists.163756 exists.164538 exists.163659 exists.164658 exists.164306 exists.162165 exists.163148 exists.163048 exists.164313 exists.164338 exists.164706 exists.162935 exists.162945 exists.161640 exists.161569 exists.161187 exists.164310 exists.164476 exists.163003 exists.163168 exists.162916 exists.163100 exists.164173 exists.164567 exists.163488 exists.162902 exists.162503 exists.164284 exists.163313 exists.161513 exists.164446 exists.163514 exists.164039 exists.162179 exists.164139 exists.164035 exists.164550 exists.160946 exists.162745 exists.162449 exists.162732 exists.162512 exists.163201 exists.164189 exists.161048 exists.164389 exists.164269 exists.164287 exists.162213 exists.162791 exists.164541 exists.163077 exists.161415 exists.163292 exists.162908 exists.162887 exists.163113 exists.163334 exists.163741 exists.163823 exists.161238 exists.164359 exists.163526 exists.163242 exists.162171 exists.162501 exists.161163 exists.161188 exists.163740 exists.162930 exists.163057 exists.163755 exists.163152 exists.163335 exists.163783 exists.164348 exists.164112 exists.164108 exists.162709 exists.161068 exists.162530 exists.161199 exists.161109 exists.163533 exists.161206 exists.164630 exists.162557 exists.164278 exists.161072 exists.161493 exists.162241 exists.162260 exists.163022 exists.164474 exists.164513 exists.164204 exists.161091 exists.163086 exists.161636 exists.163736 exists.161009 exists.163153 exists.161408 exists.163442 exists.162873 exists.161441 exists.164527 exists.161457 exists.161126 exists.164677 exists.164411 exists.164631 exists.161325 exists.164387 exists.162949 exists.163180 exists.162412 exists.163230 exists.164442 exists.161050 exists.162299 exists.162283 exists.161505 exists.161329 exists.164266 exists.161162 exists.164309 exists.162487 exists.163546 exists.162825 exists.163804 exists.163080 exists.162282 exists.163037 exists.161482 exists.161069 exists.161233 exists.163081 exists.163050 exists.161215 exists.164429 exists.164479 exists.164453 exists.164466 exists.164444 exists.161144 exists.161264 exists.161151 exists.164595 exists.164400 exists.164240 exists.163309 exists.163206 exists.161277 exists.161438 exists.164608 exists.162545 exists.161002 exists.162953 exists.161351 exists.162730 exists.160996 exists.163742 exists.164546 exists.164669 exists.163610 exists.163160 exists.161506 exists.163698 exists.164537 exists.161283 exists.161630 exists.162826 exists.162554 exists.163306 exists.162906 exists.161452 exists.163084 exists.161073 exists.164048 exists.164700 exists.164401 exists.163102 exists.164171 exists.161071 exists.164365 exists.162696 exists.164535 exists.162270 exists.164038 exists.161302 exists.163508 exists.162427 exists.161444 exists.163762 exists.162345 exists.163489 exists.161044 exists.160981 exists.161317 exists.163052 exists.163834 exists.161203 exists.161295 exists.162508 exists.164063 exists.162272 exists.162981 exists.162313 exists.162212 exists.164392 exists.164705 exists.163285 exists.163038 exists.161240 exists.164594 exists.163818 exists.163055 exists.163429 exists.164613 exists.160982 exists.163797 exists.163265 exists.161026 exists.163124 exists.161323 exists.163506 exists.162929 exists.161255 exists.164221 exists.164520 exists.162531 exists.164394 exists.163046 exists.163041 exists.161092 exists.162959 exists.162719 exists.164282 exists.164101 exists.164470 exists.161131 exists.164091 exists.161409 exists.163833 exists.164099 exists.164293 exists.163726 exists.161466 exists.164219 exists.163167 exists.161084 exists.164521 exists.161304 exists.163284 exists.163434 exists.163291 exists.161145 exists.162275 exists.164277 exists.163427 exists.162411 exists.163154 exists.164719 exists.161285 exists.163773 exists.161538 exists.163448 exists.161293 exists.163093 exists.163257 exists.164312 exists.163047 exists.161389 exists.164597 exists.161574 exists.161225 exists.164345 exists.162416 exists.162998 exists.161546 exists.161445 exists.164043 exists.163781 exists.164097 exists.163447 exists.164030 exists.163817 exists.164676 exists.163652 exists.162965 exists.161483 exists.161081 exists.161190 exists.163062 exists.161089 exists.161631 exists.164347 exists.164386 exists.161390 exists.163183 exists.164578 exists.161303 exists.161564 exists.161407 exists.162939 exists.163133 exists.163259 exists.164668 exists.164634 exists.163079 exists.164286 exists.164100 exists.161167 exists.162877 exists.162399 exists.162723 exists.161624 exists.162751 exists.163072 exists.164696 exists.163701 exists.161102 exists.162990 exists.164115 exists.162938 exists.163451 exists.164566 exists.163224 exists.164373 exists.162344 exists.161585 exists.164450 exists.162868 exists.162831 exists.162488 exists.161411 exists.163520 exists.162311 exists.162947 exists.163116 exists.161334 exists.0/22201/22202/22203/22204/22205/22206/22207/22208/22209/222010/222011/222012/222013/222014/222015/222016/222017/222018/222019/222020/222021/222022/222023/222024/222025/222026/222027/222028/222029/222030/222031/222032/222033/222034/222035/222036/222037/222038/222039/222040/222041/222042/222043/222044/222045/222046/222047/222048/222049/222050/222051/222052/222053/222054/222055/222056/222057/222058/222059/222060/222061/222062/222063/222064/222065/222066/222067/222068/222069/222070/222071/222072/222073/222074/222075/222076/222077/222078/222079/222080/222081/222082/222083/222084/222085/222086/222087/222088/222089/222090/222091/222092/222093/222094/222095/222096/222097/222098/222099/2220100/2220101/2220102/2220103/2220104/2220105/2220106/2220107/2220108/2220109/2220110/2220111/2220112/2220113/2220114/2220115/2220116/2220117/2220118/2220119/2220120/2220121/2220122/2220123/2220124/2220125/2220126/2220127/2220128/2220129/2220130/2220131/2220132/2220133/2220134/2220135/2220136/2220137/2220138/2220139/2220140/2220141/2220142/2220143/2220144/2220145/2220146/2220147/2220148/2220149/2220150/2220151/2220152/2220153/2220154/2220155/2220156/2220157/2220158/2220159/2220160/2220161/2220162/2220163/2220164/2220165/2220166/2220167/2220168/2220169/2220170/2220171/2220172/2220173/2220174/2220175/2220176/2220177/2220178/2220179/2220180/2220181/2220182/2220183/2220184/2220185/2220186/2220187/2220188/2220189/2220190/2220191/2220192/2220193/2220194/2220195/2220196/2220197/2220198/2220199/2220200/2220201/2220202/2220203/2220204/2220205/2220206/2220207/2220208/2220209/2220210/2220211/2220212/2220213/2220214/2220215/2220216/2220217/2220218/2220219/2220220/2220221/2220222/2220223/2220224/2220225/2220226/2220227/2220228/2220229/2220230/2220231/2220232/2220233/2220234/2220235/2220236/2220237/2220238/2220239/2220240/2220241/2220242/2220243/2220244/2220245/2220246/2220247/2220248/2220249/2220250/2220251/2220252/2220253/2220254/2220255/2220256/2220257/2220258/2220259/2220260/2220261/2220262/2220263/2220264/2220265/2220266/2220267/2220268/2220269/2220270/2220271/2220272/2220273/2220274/2220275/2220276/2220277/2220278/2220279/2220280/2220281/2220282/2220283/2220284/2220285/2220286/2220287/2220288/2220289/2220290/2220291/2220292/2220293/2220294/2220295/2220296/2220297/2220298/2220299/2220300/2220301/2220302/2220303/2220304/2220305/2220306/2220307/2220308/2220309/2220310/2220311/2220312/2220313/2220314/2220315/2220316/2220317/2220318/2220319/2220320/2220321/2220322/2220323/2220324/2220325/2220326/2220327/2220328/2220329/2220330/2220331/2220332/2220333/2220334/2220335/2220336/2220337/2220338/2220339/2220340/2220341/2220342/2220343/2220344/2220345/2220346/2220347/2220348/2220349/2220350/2220351/2220352/2220353/2220354/2220355/2220356/2220357/2220358/2220359/2220360/2220361/2220362/2220363/2220364/2220365/2220366/2220367/2220368/2220369/2220370/2220371/2220372/2220373/2220374/2220375/2220376/2220377/2220378/2220379/2220380/2220381/2220382/2220383/2220384/2220385/2220386/2220387/2220388/2220389/2220390/2220391/2220392/2220393/2220394/2220395/2220396/2220397/2220398/2220399/2220400/2220401/2220402/2220403/2220404/2220405/2220406/2220407/2220408/2220409/2220410/2220411/2220412/2220413/2220414/2220415/2220416/2220417/2220418/2220419/2220420/2220421/2220422/2220423/2220424/2220425/2220426/2220427/2220428/2220429/2220430/2220431/2220432/2220433/2220434/2220435/2220436/2220437/2220438/2220439/2220440/2220441/2220442/2220443/2220444/2220445/2220446/2220447/2220448/2220449/2220450/2220451/2220452/2220453/2220454/2220455/2220456/2220457/2220458/2220459/2220460/2220461/2220462/2220463/2220464/2220465/2220466/2220467/2220468/2220469/2220470/2220471/2220472/2220473/2220474/2220475/2220476/2220477/2220478/2220479/2220480/2220481/2220482/2220483/2220484/2220485/2220486/2220487/2220488/2220489/2220490/2220491/2220492/2220493/2220494/2220495/2220496/2220497/2220498/2220499/2220500/2220501/2220502/2220503/2220504/2220505/2220506/2220507/2220508/2220509/2220510/2220511/2220512/2220513/2220514/2220515/2220516/2220517/2220518/2220519/2220520/2220521/2220522/2220523/2220524/2220525/2220526/2220527/2220528/2220529/2220530/2220531/2220532/2220533/2220534/2220535/2220536/2220537/2220538/2220539/2220540/2220541/2220542/2220543/2220544/2220545/2220546/2220547/2220548/2220549/2220550/2220551/2220552/2220553/2220554/2220555/2220556/2220557/2220558/2220559/2220560/2220561/2220562/2220563/2220564/2220565/2220566/2220567/2220568/2220569/2220570/2220571/2220572/2220573/2220574/2220575/2220576/2220577/2220578/2220579/2220580/2220581/2220582/2220583/2220584/2220585/2220586/2220587/2220588/2220589/2220590/2220591/2220592/2220593/2220594/2220595/2220596/2220597/2220598/2220599/2220600/2220601/2220602/2220603/2220604/2220605/2220606/2220607/2220608/2220609/2220610/2220611/2220612/2220613/2220614/2220615/2220616/2220617/2220618/2220619/2220620/2220621/2220622/2220623/2220624/2220625/2220626/2220627/2220628/2220629/2220630/2220631/2220632/2220633/2220634/2220635/2220636/2220637/2220638/2220639/2220640/2220641/2220642/2220643/2220644/2220645/2220646/2220647/2220648/2220649/2220650/2220651/2220652/2220653/2220654/2220655/2220656/2220657/2220658/2220659/2220660/2220661/2220662/2220663/2220664/2220665/2220666/2220667/2220668/2220669/2220670/2220671/2220672/2220673/2220674/2220675/2220676/2220677/2220678/2220679/2220680/2220681/2220682/2220683/2220684/2220685/2220686/2220687/2220688/2220689/2220690/2220691/2220692/2220693/2220694/2220695/2220696/2220697/2220698/2220699/2220700/2220701/2220702/2220703/2220704/2220705/2220706/2220707/2220708/2220709/2220710/2220711/2220712/2220713/2220714/2220715/2220716/2220717/2220718/2220719/2220720/2220721/2220722/2220723/2220724/2220725/2220726/2220727/2220728/2220729/2220730/2220731/2220732/2220733/2220734/2220735/2220736/2220737/2220738/2220739/2220740/2220741/2220742/2220743/2220744/2220745/2220746/2220747/2220748/2220749/2220750/2220751/2220752/2220753/2220754/2220755/2220756/2220757/2220758/2220759/2220760/2220761/2220762/2220763/2220764/2220765/2220766/2220767/2220768/2220769/2220770/2220771/2220772/2220773/2220774/2220775/2220776/2220777/2220778/2220779/2220780/2220781/2220782/2220783/2220784/2220785/2220786/2220787/2220788/2220789/2220790/2220791/2220792/2220793/2220794/2220795/2220796/2220797/2220798/2220799/2220800/2220801/2220802/2220803/2220804/2220805/2220806/2220807/2220808/2220809/2220810/2220811/2220812/2220813/2220814/2220815/2220816/2220817/2220818/2220819/2220820/2220821/2220822/2220823/2220824/2220825/2220826/2220827/2220828/2220829/2220830/2220831/2220832/2220833/2220834/2220835/2220836/2220837/2220838/2220839/2220840/2220841/2220842/2220843/2220844/2220845/2220846/2220847/2220848/2220849/2220850/2220851/2220852/2220853/2220854/2220855/2220856/2220857/2220858/2220859/2220860/2220861/2220862/2220863/2220864/2220865/2220866/2220867/2220868/2220869/2220870/2220871/2220872/2220873/2220874/2220875/2220876/2220877/2220878/2220879/2220880/2220881/2220882/2220883/2220884/2220885/2220886/2220887/2220888/2220889/2220890/2220891/2220892/2220893/2220894/2220895/2220896/2220897/2220898/2220899/2220900/2220901/2220902/2220903/2220904/2220905/2220906/2220907/2220908/2220909/2220910/2220911/2220912/2220913/2220914/2220915/2220916/2220917/2220918/2220919/2220920/2220921/2220922/2220923/2220924/2220925/2220926/2220927/2220928/2220929/2220930/2220931/2220932/2220933/2220934/2220935/2220936/2220937/2220938/2220939/2220940/2220941/2220942/2220943/2220944/2220945/2220946/2220947/2220948/2220949/2220950/2220951/2220952/2220953/2220954/2220955/2220956/2220957/2220958/2220959/2220960/2220961/2220962/2220963/2220964/2220965/2220966/2220967/2220968/2220969/2220970/2220971/2220972/2220973/2220974/2220975/2220976/2220977/2220978/2220979/2220980/2220981/2220982/2220983/2220984/2220985/2220986/2220987/2220988/2220989/2220990/2220991/2220992/2220993/2220994/2220995/2220996/2220997/2220998/2220999/22201000/22201001/22201002/22201003/22201004/22201005/22201006/22201007/22201008/22201009/22201010/22201011/22201012/22201013/22201014/22201015/22201016/22201017/22201018/22201019/22201020/22201021/22201022/22201023/22201024/22201025/22201026/22201027/22201028/22201029/22201030/22201031/22201032/22201033/22201034/22201035/22201036/22201037/22201038/22201039/22201040/22201041/22201042/22201043/22201044/22201045/22201046/22201047/22201048/22201049/22201050/22201051/22201052/22201053/22201054/22201055/22201056/22201057/22201058/22201059/22201060/22201061/22201062/22201063/22201064/22201065/22201066/22201067/22201068/22201069/22201070/22201071/22201072/22201073/22201074/22201075/22201076/22201077/22201078/22201079/22201080/22201081/22201082/22201083/22201084/22201085/22201086/22201087/22201088/22201089/22201090/22201091/22201092/22201093/22201094/22201095/22201096/22201097/22201098/22201099/22201100/22201101/22201102/22201103/22201104/22201105/22201106/22201107/22201108/22201109/22201110/22201111/22201112/22201113/22201114/22201115/22201116/22201117/22201118/22201119/22201120/22201121/22201122/22201123/22201124/22201125/22201126/22201127/22201128/22201129/22201130/22201131/22201132/22201133/22201134/22201135/22201136/22201137/22201138/22201139/22201140/22201141/22201142/22201143/22201144/22201145/22201146/22201147/22201148/22201149/22201150/22201151/22201152/22201153/22201154/22201155/22201156/22201157/22201158/22201159/22201160/22201161/22201162/22201163/22201164/22201165/22201166/22201167/22201168/22201169/22201170/22201171/22201172/22201173/22201174/22201175/22201176/22201177/22201178/22201179/22201180/22201181/22201182/22201183/22201184/22201185/22201186/22201187/22201188/22201189/22201190/22201191/22201192/22201193/22201194/22201195/22201196/22201197/22201198/22201199/22201200/22201201/22201202/22201203/22201204/22201205/22201206/22201207/22201208/22201209/22201210/22201211/22201212/22201213/22201214/22201215/22201216/22201217/22201218/22201219/22201220/22201221/22201222/22201223/22201224/22201225/22201226/22201227/22201228/22201229/22201230/22201231/22201232/22201233/22201234/22201235/22201236/22201237/22201238/22201239/22201240/22201241/22201242/22201243/22201244/22201245/22201246/22201247/22201248/22201249/22201250/22201251/22201252/22201253/22201254/22201255/22201256/22201257/22201258/22201259/22201260/22201261/22201262/22201263/22201264/22201265/22201266/22201267/22201268/22201269/22201270/22201271/22201272/22201273/22201274/22201275/22201276/22201277/22201278/22201279/22201280/22201281/22201282/22201283/22201284/22201285/22201286/22201287/22201288/22201289/22201290/22201291/22201292/22201293/22201294/22201295/22201296/22201297/22201298/22201299/22201300/22201301/22201302/22201303/22201304/22201305/22201306/22201307/22201308/22201309/22201310/22201311/22201312/22201313/22201314/22201315/22201316/22201317/22201318/22201319/22201320/22201321/22201322/22201323/22201324/22201325/22201326/22201327/22201328/22201329/22201330/22201331/22201332/22201333/22201334/22201335/22201336/22201337/22201338/22201339/22201340/22201341/22201342/22201343/22201344/22201345/22201346/22201347/22201348/22201349/22201350/22201351/22201352/22201353/22201354/22201355/22201356/22201357/22201358/22201359/22201360/22201361/22201362/22201363/22201364/22201365/22201366/22201367/22201368/22201369/22201370/22201371/22201372/22201373/22201374/22201375/22201376/22201377/22201378/22201379/22201380/22201381/22201382/22201383/22201384/22201385/22201386/22201387/22201388/22201389/22201390/22201391/22201392/22201393/22201394/22201395/22201396/22201397/22201398/22201399/22201400/22201401/22201402/22201403/22201404/22201405/22201406/22201407/22201408/22201409/22201410/22201411/22201412/22201413/22201414/22201415/22201416/22201417/22201418/22201419/22201420/22201421/22201422/22201423/22201424/22201425/22201426/22201427/22201428/22201429/22201430/22201431/22201432/22201433/22201434/22201435/22201436/22201437/22201438/22201439/22201440/22201441/22201442/22201443/22201444/22201445/22201446/22201447/22201448/22201449/22201450/22201451/22201452/22201453/22201454/22201455/22201456/22201457/22201458/22201459/22201460/22201461/22201462/22201463/22201464/22201465/22201466/22201467/22201468/22201469/22201470/22201471/22201472/22201473/22201474/22201475/22201476/22201477/22201478/22201479/22201480/22201481/22201482/22201483/22201484/22201485/22201486/22201487/22201488/22201489/22201490/22201491/22201492/22201493/22201494/22201495/22201496/22201497/22201498/22201499/22201500/22201501/22201502/22201503/22201504/22201505/22201506/22201507/22201508/22201509/22201510/22201511/22201512/22201513/22201514/22201515/22201516/22201517/22201518/22201519/22201520/22201521/22201522/22201523/22201524/22201525/22201526/22201527/22201528/22201529/22201530/22201531/22201532/22201533/22201534/22201535/22201536/22201537/22201538/22201539/22201540/22201541/22201542/22201543/22201544/22201545/22201546/22201547/22201548/22201549/22201550/22201551/22201552/22201553/22201554/22201555/22201556/22201557/22201558/22201559/22201560/22201561/22201562/22201563/22201564/22201565/22201566/22201567/22201568/22201569/22201570/22201571/22201572/22201573/22201574/22201575/22201576/22201577/22201578/22201579/22201580/22201581/22201582/22201583/22201584/22201585/22201586/22201587/22201588/22201589/22201590/22201591/22201592/22201593/22201594/22201595/22201596/22201597/22201598/22201599/22201600/22201601/22201602/22201603/22201604/22201605/22201606/22201607/22201608/22201609/22201610/22201611/22201612/22201613/22201614/22201615/22201616/22201617/22201618/22201619/22201620/22201621/22201622/22201623/22201624/22201625/22201626/22201627/22201628/22201629/22201630/22201631/22201632/22201633/22201634/22201635/22201636/22201637/22201638/22201639/22201640/22201641/22201642/22201643/22201644/22201645/22201646/22201647/22201648/22201649/22201650/22201651/22201652/22201653/22201654/22201655/22201656/22201657/22201658/22201659/22201660/22201661/22201662/22201663/22201664/22201665/22201666/22201667/22201668/22201669/22201670/22201671/22201672/22201673/22201674/22201675/22201676/22201677/22201678/22201679/22201680/22201681/22201682/22201683/22201684/22201685/22201686/22201687/22201688/22201689/22201690/22201691/22201692/22201693/22201694/22201695/22201696/22201697/22201698/22201699/22201700/22201701/22201702/22201703/22201704/22201705/22201706/22201707/22201708/22201709/22201710/22201711/22201712/22201713/22201714/22201715/22201716/22201717/22201718/22201719/22201720/22201721/22201722/22201723/22201724/22201725/22201726/22201727/22201728/22201729/22201730/22201731/22201732/22201733/22201734/22201735/22201736/22201737/22201738/22201739/22201740/22201741/22201742/22201743/22201744/22201745/22201746/22201747/22201748/22201749/22201750/22201751/22201752/22201753/22201754/22201755/22201756/22201757/22201758/22201759/22201760/22201761/22201762/22201763/22201764/22201765/22201766/22201767/22201768/22201769/22201770/22201771/22201772/22201773/22201774/22201775/22201776/22201777/22201778/22201779/22201780/22201781/22201782/22201783/22201784/22201785/22201786/22201787/22201788/22201789/22201790/22201791/22201792/22201793/22201794/22201795/22201796/22201797/22201798/22201799/22201800/22201801/22201802/22201803/22201804/22201805/22201806/22201807/22201808/22201809/22201810/22201811/22201812/22201813/22201814/22201815/22201816/22201817/22201818/22201819/22201820/22201821/22201822/22201823/22201824/22201825/22201826/22201827/22201828/22201829/22201830/22201831/22201832/22201833/22201834/22201835/22201836/22201837/22201838/22201839/22201840/22201841/22201842/22201843/22201844/22201845/22201846/22201847/22201848/22201849/22201850/22201851/22201852/22201853/22201854/22201855/22201856/22201857/22201858/22201859/22201860/22201861/22201862/22201863/22201864/22201865/22201866/22201867/22201868/22201869/22201870/22201871/22201872/22201873/22201874/22201875/22201876/22201877/22201878/22201879/22201880/22201881/22201882/22201883/22201884/22201885/22201886/22201887/22201888/22201889/22201890/22201891/22201892/22201893/22201894/22201895/22201896/22201897/22201898/22201899/22201900/22201901/22201902/22201903/22201904/22201905/22201906/22201907/22201908/22201909/22201910/22201911/22201912/22201913/22201914/22201915/22201916/22201917/22201918/22201919/22201920/22201921/22201922/22201923/22201924/22201925/22201926/22201927/22201928/22201929/22201930/22201931/22201932/22201933/22201934/22201935/22201936/22201937/22201938/22201939/22201940/22201941/22201942/22201943/22201944/22201945/22201946/22201947/22201948/22201949/22201950/22201951/22201952/22201953/22201954/22201955/22201956/22201957/22201958/22201959/22201960/22201961/22201962/22201963/22201964/22201965/22201966/22201967/22201968/22201969/22201970/22201971/22201972/22201973/22201974/22201975/22201976/22201977/22201978/22201979/22201980/22201981/22201982/22201983/22201984/22201985/22201986/22201987/22201988/22201989/22201990/22201991/22201992/22201993/22201994/22201995/22201996/22201997/22201998/22201999/22202000/22202001/22202002/22202003/22202004/22202005/22202006/22202007/22202008/22202009/22202010/22202011/22202012/22202013/22202014/22202015/22202016/22202017/22202018/22202019/22202020/22202021/22202022/22202023/22202024/22202025/22202026/22202027/22202028/22202029/22202030/22202031/22202032/22202033/22202034/22202035/22202036/22202037/22202038/22202039/22202040/22202041/22202042/22202043/22202044/22202045/22202046/22202047/22202048/22202049/22202050/22202051/22202052/22202053/22202054/22202055/22202056/22202057/22202058/22202059/22202060/22202061/22202062/22202063/22202064/22202065/22202066/22202067/22202068/22202069/22202070/22202071/22202072/22202073/22202074/22202075/22202076/22202077/22202078/22202079/22202080/22202081/22202082/22202083/22202084/22202085/22202086/22202087/22202088/22202089/22202090/22202091/22202092/22202093/22202094/22202095/22202096/22202097/22202098/22202099/22202100/22202101/22202102/22202103/22202104/22202105/22202106/22202107/22202108/22202109/22202110/22202111/22202112/22202113/22202114/22202115/22202116/22202117/22202118/22202119/22202120/22202121/22202122/22202123/22202124/22202125/22202126/22202127/22202128/22202129/22202130/22202131/22202132/22202133/22202134/22202135/22202136/22202137/22202138/22202139/22202140/22202141/22202142/22202143/22202144/22202145/22202146/22202147/22202148/22202149/22202150/22202151/22202152/22202153/22202154/22202155/22202156/22202157/22202158/22202159/22202160/22202161/22202162/22202163/22202164/22202165/22202166/22202167/22202168/22202169/22202170/22202171/22202172/22202173/22202174/22202175/22202176/22202177/22202178/22202179/22202180/22202181/22202182/22202183/22202184/22202185/22202186/22202187/22202188/22202189/22202190/22202191/22202192/22202193/22202194/22202195/22202196/22202197/22202198/22202199/22202200/22202201/22202202/22202203/22202204/22202205/22202206/22202207/22202208/22202209/22202210/22202211/22202212/22202213/22202214/22202215/22202216/22202217/22202218/22202219/2220Finished Preprocessing 2220 files in 35.452878952 seconds
+Omitted 2220 shots of 2220 total.
+0/0 disruptive shots
+WARNING: All shots were omitted, please ensure raw data is complete and available at /work/00004/michoski/maverick2/../../../05447/merlo/maverick/plasma_python/signal_data_new/.
+0 0

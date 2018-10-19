@@ -1,0 +1,4 @@
+#!/work/00004/michoski/maverick2/plasma-python/examples/virtual/bin/python
+# EASY-INSTALL-SCRIPT: 'dill==0.2.8.2','get_objgraph'
+__requires__ = 'dill==0.2.8.2'
+__import__('pkg_resources').run_script('dill==0.2.8.2', 'get_objgraph')

@@ -1,0 +1,16 @@
+#!/bin/bash
+#SBATCH -J plasma_python    # job name
+#SBATCH -o plasma.o%j       # Name of stdout output file
+#SBATCH -e plasma.e%j       # Name of stderr error file
+#SBATCH -N 1              # total number of nodes
+#SBATCH -n 1
+#SBATCH -p gtx           # queue (partition) -- normal, development, etc.
+#SBATCH -t 04:00:00        # run time (hh:mm:ss) - 4 hours
+#SBATCH -A Magnetic-Confinement    #TG-CCR150011    # project name
+#SBATCH --mail-user=michoski@gmail.com
+#SBATCH --mail-type=all    # Send email at begin and end of job
+
+ml python cuda/9.0 cudnn/7.0
+export PYTHONPATH=$PYTHONPATH:$(pwd) #/scratch/00946/zzhang/stampede2/plasma-python
+
+python mpi_learn.py

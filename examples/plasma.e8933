@@ -1,0 +1,5 @@
+Using TensorFlow backend.
+RuntimeError: module compiled against API version 0xc but this version of numpy is 0xa
+RuntimeError: module compiled against API version 0xc but this version of numpy is 0xa
+2018-10-13 18:56:05.807585: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+slurmstepd: error: *** JOB 8933 ON c227-108 CANCELLED AT 2018-10-13T22:56:15 DUE TO TIME LIMIT ***

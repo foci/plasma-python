@@ -1,0 +1,10 @@
+module load python #phdf5
+
+#pip install --user h5py
+#pip uninstall tensorflow
+#pip install --user /scratch/00946/zzhang/stampede2/tensorflow/build/tensorflow-1.9.0-cp27-cp27mu-linux_x86_64.whl
+#idev -p skx-dev -N 2 -n 2 -t 01:00:00
+
+export HDF5_USE_FILE_LOCKING=FALSE
+
+export PYTHONPATH=$PYTHONPATH:$(pwd) #/scratch/00946/zzhang/stampede2/plasma-python

@@ -1,0 +1,26 @@
+Using TensorFlow backend.
+RuntimeError: module compiled against API version 0xc but this version of numpy is 0xa
+RuntimeError: module compiled against API version 0xc but this version of numpy is 0xa
+2018-10-12 16:35:17.195003: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+Traceback (most recent call last):
+  File "mpi_learn.py", line 77, in <module>
+    shot_list_train,shot_list_validate,shot_list_test = guarantee_preprocessed(conf)
+  File "/work/00004/michoski/maverick2/plasma-python/plasma/preprocessor/preprocess.py", line 226, in guarantee_preprocessed
+    shot_list = pp.preprocess_all()
+  File "/work/00004/michoski/maverick2/plasma-python/plasma/preprocessor/preprocess.py", line 72, in preprocess_all
+    return self.preprocess_from_files(shot_files_all,use_shots)
+  File "/work/00004/michoski/maverick2/plasma-python/plasma/preprocessor/preprocess.py", line 90, in preprocess_from_files
+    for (i,shot) in enumerate(map(self.preprocess_single_file,shot_list_picked)):
+  File "/work/00004/michoski/maverick2/plasma-python/plasma/preprocessor/preprocess.py", line 108, in preprocess_single_file
+    shot.preprocess(self.conf)
+  File "/work/00004/michoski/maverick2/plasma-python/plasma/primitives/shots.py", line 385, in preprocess
+    self.cut_and_resample_signals(time_arrays,signal_arrays,t_min,t_max,conf)
+  File "/work/00004/michoski/maverick2/plasma-python/plasma/primitives/shots.py", line 445, in cut_and_resample_signals
+    tr,sigr = cut_and_resample_signal(time_arrays[i],signal_arrays[i],t_min,t_max,dt,conf['data']['floatx'])
+  File "/work/00004/michoski/maverick2/plasma-python/plasma/utils/processing.py", line 52, in cut_and_resample_signal
+    return resample_signal(t,sig,tmin,tmax,dt,precision_str)
+  File "/work/00004/michoski/maverick2/plasma-python/plasma/utils/processing.py", line 34, in resample_signal
+    sig_interp[:,i] = time_sensitive_interp(sig[:,i],t,tt) #make sure to not use future information
+  File "/work/00004/michoski/maverick2/plasma-python/plasma/utils/processing.py", line 24, in time_sensitive_interp
+    return x[indices]
+IndexError: index 0 is out of bounds for axis 1 with size 0

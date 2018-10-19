@@ -40,6 +40,10 @@ class ModelBuilder(object):
         this_conf = deepcopy(self.conf)
         #don't make hash dependent on number of epochs.
         this_conf['training']['num_epochs'] = 0
+        print('damn')
+        print(dill)
+        print(dill.__dict__)
+        print('it')
         unique_id = int(hashlib.md5((dill.dumps(this_conf).decode('unicode_escape')).encode('utf-8')).hexdigest(),16)
         return unique_id
 

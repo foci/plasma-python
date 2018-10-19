@@ -1,0 +1,4 @@
+#!/work/00004/michoski/maverick2/plasma-python/examples/virtual/bin/python
+# EASY-INSTALL-SCRIPT: 'pox==0.2.4','pox'
+__requires__ = 'pox==0.2.4'
+__import__('pkg_resources').run_script('pox==0.2.4', 'pox')

@@ -1,0 +1,4 @@
+#!/work/00004/michoski/maverick2/plasma-python/examples/virtual/bin/python
+# EASY-INSTALL-SCRIPT: 'ppft==1.6.4.8','ppserver'
+__requires__ = 'ppft==1.6.4.8'
+__import__('pkg_resources').run_script('ppft==1.6.4.8', 'ppserver')

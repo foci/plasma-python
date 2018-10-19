@@ -1,0 +1,11 @@
+ml cuda/9.0 cudnn/7.0
+export LD_LIBRARY_PATH=/home1/00946/zzhang/nccl_2.1.4-1+cuda9.0_x86_64/lib:$LD_LIBRARY_PATH
+export NCCL_DEBUG=INFO
+export PYTHONPATH=$PYTHONPATH:$(pwd)
+
+
+scontrol show hostnames $SLURM_NODELIST > hostfile.1
+
+#RANK=$(($PMI_RANK%4))
+#export CUDA_VISIBLE_DEVICES=$RANK
+#python mpi_learn.py 2>&1;

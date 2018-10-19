@@ -176,6 +176,8 @@ rl01 = Signal("Rogowsky current1",["jpf/da/c2-ipla","d3d/rl01"],[jet,d3d],is_ip=
 rl02 = Signal("Rogowsky current2",["jpf/da/c2-ipla","d3d/rl02"],[jet,d3d],is_ip=False)
 rl03 = Signal("Rogowsky current3",["jpf/da/c2-ipla","d3d/rl03"],[jet,d3d],is_ip=False)
 
+kip = Signal("Kaggle ip",["jpf/da/c2-ipla","d3d/kip"],[jet,d3d],is_ip=False)
+
 
 li = Signal("internal inductance",["jpf/gs/bl-li<s","d3d/efsli"],[jet,d3d])
 lm = Signal("Locked mode amplitude",['jpf/da/c2-loca','d3d/dusbradial'],[jet,d3d])
@@ -217,13 +219,16 @@ ipdirect = Signal("plasma current direction",["d3d/iptdirect"],[d3d])
 #}
 
 #Restricted subset to those signals that are present for most shots. The idea is to remove signals that cause many shots to be dropped from the dataset.
-all_signals = {'rl01':rl01,'rl02':rl02,'rl03':rl03,'q95':q95,'li':li,'ip':ip,'betan':betan,'energy':energy,'lm':lm,'dens':dens,'pradcore':pradcore,
+all_signals = {'rl01':rl01,'rl02':rl02,'rl03':rl03,'q95':q95,'lm':lm,'li':li,'ip':ip,'betan':betan,'energy':energy,'dens':dens,'pradcore':pradcore,
 'pradedge':pradedge,'pradtot':pradtot,'pin':pin,
 'torquein':torquein,
 'energydt':energydt,'ipdirect':ipdirect,'iptarget':iptarget,'iperr':iperr,
 #'tmamp1':tmamp1,'tmamp2':tmamp2,'tmfreq1':tmfreq1,'tmfreq2':tmfreq2,'pechin':pechin,
 # 'rho_profile_spatial':rho_profile_spatial,'etemp':etemp,
-'etemp_profile':etemp_profile,'edens_profile':edens_profile}
+               'etemp_profile':etemp_profile,'edens_profile':edens_profile,'kip':kip}
+
+#all_signals = {'rl01':rl01,'rl02':rl02,'rl03':rl03}
+
 #'itemp_profile':itemp_profile,'zdens_profile':zdens_profile,
 #'trot_profile':trot_profile,'pthm_profile':pthm_profile,
 #'neut_profile':neut_profile,'q_profile':q_profile,
@@ -231,6 +236,9 @@ all_signals = {'rl01':rl01,'rl02':rl02,'rl03':rl03,'q95':q95,'li':li,'ip':ip,'be
 #'q_psi_profile':q_psi_profile}
 #}
 
+
+#all_signals = {'kip':kip}
+#all_signals = {'ip':ip}
 #new signals are not downloaded yet
 
 

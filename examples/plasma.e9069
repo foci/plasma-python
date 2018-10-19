@@ -1,0 +1,15 @@
+Using TensorFlow backend.
+RuntimeError: module compiled against API version 0xc but this version of numpy is 0xa
+RuntimeError: module compiled against API version 0xc but this version of numpy is 0xa
+2018-10-15 17:13:17.413043: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+Traceback (most recent call last):
+  File "mpi_learn.py", line 77, in <module>
+    shot_list_train,shot_list_validate,shot_list_test = guarantee_preprocessed(conf)
+  File "/work/00004/michoski/maverick2/plasma-python/plasma/preprocessor/preprocess.py", line 228, in guarantee_preprocessed
+    shot_list_train,shot_list_test = shot_list.split_train_test(conf)
+  File "/work/00004/michoski/maverick2/plasma-python/plasma/primitives/shots.py", line 142, in split_train_test
+    return shots_train.random_sublist(use_shots_train),shots_test.random_sublist(use_shots_test)
+  File "/work/00004/michoski/maverick2/plasma-python/plasma/primitives/shots.py", line 239, in random_sublist
+    shots_picked = np.random.choice(self.shots,size=num,replace=False)
+  File "mtrand.pyx", line 1110, in mtrand.RandomState.choice (numpy/random/mtrand/mtrand.c:17158)
+ValueError: a must be non-empty

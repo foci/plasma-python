@@ -7,11 +7,11 @@ target: 'hinge' #'maxhinge' #'maxhinge' #'binary' #'hinge'
 num_gpus: 1 #40
 
 paths:
-    signal_prepath: '/../../../05447/merlo/maverick/plasma_python/signal_data_new/' #/signal_data/jet/
+    signal_prepath: '/../../../05447/merlo/maverick/plasma_python/signal_data_new/d3d/d3d/' #/signal_data/jet/
     shot_list_dir: '/shot_lists/d3d/'
     tensorboard_save_path: '/Graph/'
     data: 'd3d_data_cem' #'d3d_to_jet_data' #'d3d_to_jet_data' # 'jet_to_d3d_data' #jet_data
-    specific_signals: ['ip'] #['kip','q95','li','ip','betan','energy','lm','pradcore','pradedge','pradtot','pin','torquein','tmamp1','tmamp2','tmfreq1','tmfreq2','pechin','energydt','ipdirect','etemp_profile','edens_profile'] #if left empty will use all valid signals defined on a machine. Only use if need a custom set
+    specific_signals: ['rl01'] #['q95','li','ip','betan','energy','lm','pradcore','pradedge','pradtot','pin','torquein','tmamp1','tmamp2','tmfreq1','tmfreq2','pechin','energydt','ipdirect','etemp_profile','edens_profile'] #if left empty will use all valid signals defined on a machine. Only use if need a custom set
     executable: "mpi_learn.py"
     shallow_executable: "learn.py"
 
@@ -25,14 +25,14 @@ data:
     augment_during_training: False
     cut_shot_ends: True
     T_min_warn: 30
-    recompute: True
+    recompute: False
     recompute_normalization: False
     #specifies which of the signals in the signals_dirs order contains the plasma current info
     current_index: 0
     plotting: False
     #train/validate split
     #how many shots to use
-    use_shots: 4000 #1000 #200000
+    use_shots: 200000 #1000 #200000
     positive_example_penalty: 1.0 #by what factor to upweight positive examples?
     #normalization timescale
     dt: 0.001
@@ -116,7 +116,7 @@ training:
     max_patch_length: 100000
     #How many shots are we loading at once?
     num_shots_at_once: 200
-    num_epochs: 100
+    num_epochs: 10
     use_mock_data: False
     data_parallel: False
     hyperparam_tuning: False

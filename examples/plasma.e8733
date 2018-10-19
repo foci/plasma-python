@@ -1,0 +1,22 @@
+Using TensorFlow backend.
+RuntimeError: module compiled against API version 0xc but this version of numpy is 0xa
+RuntimeError: module compiled against API version 0xc but this version of numpy is 0xa
+2018-10-11 14:07:57.922436: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+Traceback (most recent call last):
+  File "mpi_learn.py", line 93, in <module>
+    mpi_train(conf,shot_list_train,shot_list_validate,loader)
+  File "/work/00004/michoski/maverick2/plasma-python/plasma/models/mpi_runner.py", line 723, in mpi_train
+    specific_builder.save_model_weights(train_model,int(round(e)))
+  File "/work/00004/michoski/maverick2/plasma-python/plasma/models/builder.py", line 223, in save_model_weights
+    model.save_weights(save_path,overwrite=True)
+  File "/home1/00004/michoski/.local/lib/python2.7/site-packages/keras/engine/network.py", line 1115, in save_weights
+    with h5py.File(filepath, 'w') as f:
+  File "/home1/00004/michoski/.local/lib/python2.7/site-packages/h5py/_hl/files.py", line 312, in __init__
+    fid = make_fid(name, mode, userblock_size, fapl, swmr=swmr)
+  File "/home1/00004/michoski/.local/lib/python2.7/site-packages/h5py/_hl/files.py", line 148, in make_fid
+    fid = h5f.create(name, h5f.ACC_TRUNC, fapl=fapl, fcpl=fcpl)
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py/h5f.pyx", line 98, in h5py.h5f.create
+IOError: Unable to create file (file locking disabled on this file system (use HDF5_USE_FILE_LOCKING environment variable to override), errno = 38, error message = 'Function not implemented')
+slurmstepd: error: *** JOB 8733 ON c227-102 CANCELLED AT 2018-10-11T18:08:09 DUE TO TIME LIMIT ***

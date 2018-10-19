@@ -1,0 +1,14 @@
+Using TensorFlow backend.
+RuntimeError: module compiled against API version 0xc but this version of numpy is 0xa
+RuntimeError: module compiled against API version 0xc but this version of numpy is 0xa
+2018-10-12 13:57:25.509134: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+Traceback (most recent call last):
+  File "mpi_learn.py", line 93, in <module>
+    mpi_train(conf,shot_list_train,shot_list_validate,loader)
+  File "/work/00004/michoski/maverick2/plasma-python/plasma/models/mpi_runner.py", line 653, in mpi_train
+    train_model = specific_builder.build_model(False)
+  File "/work/00004/michoski/maverick2/plasma-python/plasma/models/builder.py", line 121, in build_model
+    indices_0d,indices_1d,num_0D,num_1D = self.get_0D_1D_indices()
+  File "/work/00004/michoski/maverick2/plasma-python/plasma/models/builder.py", line 54, in get_0D_1D_indices
+    is_1D_region = use_signals[0].num_channels > 1#do we have any 1D indices?
+IndexError: list index out of range

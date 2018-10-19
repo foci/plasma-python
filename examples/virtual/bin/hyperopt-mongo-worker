@@ -1,0 +1,4 @@
+#!/work/00004/michoski/maverick2/plasma-python/examples/virtual/bin/python
+# EASY-INSTALL-SCRIPT: 'hyperopt==0.1.1','hyperopt-mongo-worker'
+__requires__ = 'hyperopt==0.1.1'
+__import__('pkg_resources').run_script('hyperopt==0.1.1', 'hyperopt-mongo-worker')

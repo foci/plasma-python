@@ -81,6 +81,8 @@ def parameters(input_file):
         d3d_full = ShotListFiles(d3d,params['paths']['shot_list_dir'],['d3d_clear_data_avail.txt','d3d_disrupt_data_avail.txt'],'d3d data since shot 125500')
         d3d_jenkins = ShotListFiles(d3d,params['paths']['shot_list_dir'],['jenkins_d3d_clear.txt','jenkins_d3d_disrupt.txt'],'Subset of d3d data for Jenkins test')
         d3d_cem = ShotListFiles(d3d,params['paths']['shot_list_dir'],['d3d_clear_data_avail_cem2.txt','d3d_disrupt_data_avail_cem2.txt'],'d3d data since shot 125500')
+        d3d_kag = ShotListFiles(d3d,params['paths']['shot_list_dir'],['d3d_clear_data_avail_kag.txt','d3d_disrupt_data_avail_kag.txt'],'d3d data since shot 125500')
+        d3d_kag_d = ShotListFiles(d3d,params['paths']['shot_list_dir'],['d3d_clear_kag.txt','d3d_disrupt_kag.txt'],'d3d test data')
 
         d3d_jb_full = ShotListFiles(d3d,params['paths']['shot_list_dir'],['shotlist_JaysonBarr_clear.txt','shotlist_JaysonBarr_disrupt.txt'],'d3d shots since 160000-170000')
 
@@ -159,7 +161,14 @@ def parameters(input_file):
             params['paths']['shot_files'] = [d3d_cem]
             params['paths']['shot_files_test'] = [] 
             params['paths']['use_signals_dict'] = d3d_signals
-
+        elif params['paths']['data'] == 'd3d_data_kag':
+            params['paths']['shot_files'] = [d3d_kag]
+            params['paths']['shot_files_test'] = []
+            params['paths']['use_signals_dict'] = d3d_signals
+        elif params['paths']['data'] == 'd3d_data_kag_d':
+            params['paths']['shot_files'] = [d3d_kag_d]
+            params['paths']['shot_files_test'] = []
+            params['paths']['use_signals_dict'] = d3d_signals
         #cross-machine
         elif params['paths']['data'] == 'jet_to_d3d_data':
             params['paths']['shot_files'] = [jet_full]
